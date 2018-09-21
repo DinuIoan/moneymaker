@@ -2,8 +2,13 @@
     <string name="app_name">MoneyMaker</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Money Maker PRO</string>
+    <string name="nav_header_subtitle">Earn Money Everyday</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="home">Home</string>
+    <string name="exit">Exit</string>
+    <string name="earn_money">Earn Money Now</string>
+    <string name="today_earnings">Earnings for Today</string>
+    <string name="monthly_earnings">Earnings for this Month</string>
 </resources>
