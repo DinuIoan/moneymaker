@@ -11,4 +11,7 @@
     <string name="earn_money">Earn Money Now</string>
     <string name="today_earnings">Earnings for Today</string>
     <string name="monthly_earnings">Earnings for this Month</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
