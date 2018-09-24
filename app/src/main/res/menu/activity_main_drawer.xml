@@ -13,30 +13,17 @@
             android:icon="@drawable/baseline_attach_money_black_18dp"
             android:title="@string/earn_money" />
         <item
+            android:id="@+id/nav_today_earnings"
+            android:icon="@drawable/baseline_redeem_black_18dp"
+            android:title="@string/today_earnings" />
+        <item
+            android:id="@+id/nav_month_earnings"
+            android:icon="@drawable/baseline_month_black_18dp"
+            android:title="@string/monthly_earnings" />
+        <item
             android:id="@+id/nav_exit"
             android:icon="@drawable/exit"
             android:title="@string/exit" />
-        <!--<item-->
-            <!--android:id="@+id/nav_slideshow"-->
-            <!--android:icon="@drawable/ic_menu_slideshow"-->
-            <!--android:title="Slideshow" />-->
-        <!--<item-->
-            <!--android:id="@+id/nav_manage"-->
-            <!--android:icon="@drawable/ic_menu_manage"-->
-            <!--android:title="Tools" />-->
     </group>
-
-    <item android:title="Savings">
-        <menu>
-            <item
-                android:id="@+id/nav_today_earnings"
-                android:icon="@drawable/baseline_redeem_black_18dp"
-                android:title="@string/today_earnings" />
-            <item
-                android:id="@+id/nav_month_earnings"
-                android:icon="@drawable/baseline_month_black_18dp"
-                android:title="@string/monthly_earnings" />
-        </menu>
-    </item>
 
 </menu>

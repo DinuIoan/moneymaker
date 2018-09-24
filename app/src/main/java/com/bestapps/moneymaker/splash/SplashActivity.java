@@ -16,9 +16,7 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        // set the content view for your splash screen you defined in an xml file
         setContentView(R.layout.activity_splash);
-        // perform other stuff you need to do
         loadData();
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
