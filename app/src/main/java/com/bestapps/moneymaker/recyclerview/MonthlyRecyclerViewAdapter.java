@@ -2,7 +2,6 @@ package com.bestapps.moneymaker.recyclerview;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -12,8 +11,8 @@ import com.bestapps.moneymaker.model.Earning;
 
 import java.util.List;
 
-public class TodayRecyclerViewAdapter
-        extends RecyclerView.Adapter<TodayRecyclerViewAdapter.MyViewHolder>  {
+public class MonthlyRecyclerViewAdapter
+        extends RecyclerView.Adapter<TodayRecyclerViewAdapter.MyViewHolder> {
     private List<Earning> earningList;
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -33,25 +32,25 @@ public class TodayRecyclerViewAdapter
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public TodayRecyclerViewAdapter(List<Earning> earningList) {
+    public MonthlyRecyclerViewAdapter(List<Earning> earningList) {
         this.earningList = earningList;
     }
 
     // Create new views (invoked by the layout manager)
     @Override
     public TodayRecyclerViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent,
-                                                     int viewType) {
+                                                                    int viewType) {
         // create a new view
         LinearLayout v = (LinearLayout) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.today_earning_list_row, parent, false);
 
-        MyViewHolder vh = new MyViewHolder(v);
+        TodayRecyclerViewAdapter.MyViewHolder vh = new TodayRecyclerViewAdapter.MyViewHolder(v);
         return vh;
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(TodayRecyclerViewAdapter.MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.description.setText(earningList.get(position).getDescription());

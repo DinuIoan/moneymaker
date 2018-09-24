@@ -17,4 +17,8 @@ public class DatabaseData {
     public static List<Earning> getEarnings() {
         return earnings;
     }
+
+    public static void setEarnings(List<Earning> earnings) {
+        DatabaseData.earnings = earnings;
+    }
 }

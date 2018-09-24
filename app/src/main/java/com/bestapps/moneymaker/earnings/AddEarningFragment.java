@@ -3,9 +3,12 @@ package com.bestapps.moneymaker.earnings;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -21,6 +24,7 @@ public class AddEarningFragment extends Fragment {
     private Button addButton;
     private TextView descriptionTextView;
     private TextView amountTextView;
+    private FragmentManager fragmentManager;
 
     public AddEarningFragment() {
     }
@@ -51,8 +55,24 @@ public class AddEarningFragment extends Fragment {
     private void addEarning() {
         Earning earning = new Earning(0L, descriptionTextView.getText().toString(),
                 Long.parseLong(amountTextView.getText().toString()), parseDate());
+        InputMethodManager imm = (InputMethodManager)
+                getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
+        View view = getActivity().getCurrentFocus();
+        if (view == null) {
+            view = new View(getActivity());
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         DatabaseHandler databaseHandler = new DatabaseHandler(getActivity().getApplicationContext());
         databaseHandler.addEarnings(earning);
+        changeFragment();
+    }
+
+    private void changeFragment() {
+        fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction =
+                fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_placeholder, new TodayEarningsFragment());
+        fragmentTransaction.commit();
     }
 
     private String parseDate() {

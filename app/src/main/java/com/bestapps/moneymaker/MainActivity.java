@@ -3,6 +3,7 @@ package com.bestapps.moneymaker;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.ImageViewCompat;
@@ -16,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.bestapps.moneymaker.earnings.MonthEarningsFragment;
 import com.bestapps.moneymaker.earnings.TodayEarningsFragment;
 import com.bestapps.moneymaker.earnmoney.EarnMoneyFragment;
 import com.bestapps.moneymaker.home.HomeFragment;
@@ -88,22 +90,16 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            FragmentTransaction fragmentTransaction =
-                    fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_placeholder, new HomeFragment());
-            fragmentTransaction.commit();
+            changeFragment(new HomeFragment());
         }
         if (id == R.id.nav_earn_money) {
-           FragmentTransaction fragmentTransaction =
-                    fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_placeholder, new EarnMoneyFragment());
-            fragmentTransaction.commit();
+           changeFragment(new EarnMoneyFragment());
         }
         if (id == R.id.nav_today_earnings) {
-            FragmentTransaction fragmentTransaction =
-                    fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_placeholder, new TodayEarningsFragment());
-            fragmentTransaction.commit();
+            changeFragment(new TodayEarningsFragment());
+        }
+        if (id == R.id.nav_month_earnings) {
+            changeFragment(new MonthEarningsFragment());
         }
         if (id == R.id.nav_exit) {
             quitApp();
@@ -112,6 +108,13 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void changeFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction =
+                fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_placeholder, fragment);
+        fragmentTransaction.commit();
     }
 
     public void quitApp(){
