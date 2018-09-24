@@ -3,10 +3,10 @@ package com.bestapps.moneymaker.model;
 public class Earning {
     private Long id;
     private String description;
-    private int amount;
-    private Long date;
+    private Long amount;
+    private String date;
 
-    public Earning(Long id, String description, int amount, Long date) {
+    public Earning(Long id, String description, Long amount, String date) {
         this.id = id;
         this.description = description;
         this.amount = amount;
@@ -29,19 +29,19 @@ public class Earning {
         this.description = description;
     }
 
-    public int getAmount() {
+    public Long getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(Long amount) {
         this.amount = amount;
     }
 
-    public Long getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

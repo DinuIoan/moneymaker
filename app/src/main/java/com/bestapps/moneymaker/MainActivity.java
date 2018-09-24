@@ -38,8 +38,15 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+
         navigationView.setCheckedItem(R.id.nav_home);
+        FragmentTransaction fragmentTransaction =
+                fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_placeholder, new HomeFragment());
+        fragmentTransaction.commit();
+
+        navigationView.setNavigationItemSelectedListener(this);
+
     }
 
     @Override

@@ -14,6 +14,7 @@
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:text="Today's earnings: 1568$"
+            android:textColor="@android:color/black"
             android:textSize="23sp"
             android:textStyle="bold"
             android:gravity="center"/>
@@ -29,12 +30,14 @@
         <Button
             android:id="@+id/today_add_earning"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="55dp"
             android:layout_alignParentBottom="true"
             android:layout_margin="10dp"
             android:background="@drawable/today_add_earning"
-            android:textSize="18sp"
+            android:textSize="20sp"
             android:text="ADD EARNING"
+            android:textColor="@android:color/black"
+            android:textStyle="bold"
             android:translationZ="10dp"/>
 
     </RelativeLayout>

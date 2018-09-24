@@ -31,7 +31,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + ID + " integer primary key , "
                 + EARNINGS_DESCRIPTION + " text, "
                 + EARNINGS_AMOUNT + "integer, "
-                + EARNINGS_DATE + "integer " +
+                + EARNINGS_DATE + "text " +
                 " )" ;
         db.execSQL(CREATE_EARNINGS_TABLE);
     }
@@ -45,7 +45,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void addEarnings(Earning earning) {
         SQLiteDatabase database = getWritableDatabase();
         String ADD_EARNINGS = "insert into " + EARNINGS_TABLE +
-                "values(null, '"
+                " values(null, '"
                 + earning.getDescription() + "', '"
                 + earning.getAmount() + "', '"
                 + earning.getDate() + "')";
@@ -63,8 +63,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Earning earning = new Earning(
                     cursor.getLong(0),
                     cursor.getString(1),
-                    cursor.getInt(2),
-                    cursor.getLong(3));
+                    cursor.getLong(2),
+                    cursor.getString(3));
             earnings.add(earning);
         }
         cursor.close();
