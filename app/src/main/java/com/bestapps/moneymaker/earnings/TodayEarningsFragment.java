@@ -2,6 +2,7 @@ package com.bestapps.moneymaker.earnings;
 
 
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -25,7 +26,7 @@ public class TodayEarningsFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private Button addEarningButton;
+    private FloatingActionButton addEarningButton;
     private FragmentManager fragmentManager;
 
 
@@ -45,7 +46,7 @@ public class TodayEarningsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_today_earning, container, false);
-        addEarningButton = view.findViewById(R.id.today_add_earning);
+        addEarningButton = view.findViewById(R.id.fab);
         loadEarnings();
         if (DatabaseData.getEarnings() != null) {
             mRecyclerView = view.findViewById(R.id.today_recycler_view);

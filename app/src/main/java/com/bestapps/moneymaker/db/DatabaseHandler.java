@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.bestapps.moneymaker.model.Earning;
+import com.bestapps.moneymaker.model.Profile;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,6 +21,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String EARNINGS_AMOUNT = "amount";
     private static final String EARNINGS_DATE = "date";
 
+    private static final String PROFILE_TABLE = "profile";
+    private static final String PROFILE_NAME = "name";
+    private static final String PROFILE_PASSWORD = "password";
+    private static final String PROFILE_EMAIL = "email";
+    private static final String PROFILE_DATE = "date";
+    private static final String PROFILE_ACTIVE = "active";
+
     public DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -28,20 +36,32 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String CREATE_EARNINGS_TABLE = "create table " + EARNINGS_TABLE+
                 " ( "
-                + ID + " integer primary key , "
+                + ID + " integer primary key autoincrement, "
                 + EARNINGS_DESCRIPTION + " text, "
                 + EARNINGS_AMOUNT + "integer, "
                 + EARNINGS_DATE + "text " +
                 " )" ;
+        String CREATE_PROFILE_TABLE = "create table " + PROFILE_TABLE +
+                " ( "
+                + ID + " integer primary key autoincrement, "
+                + PROFILE_NAME + " text, "
+                + PROFILE_PASSWORD + " text, "
+                + PROFILE_EMAIL + " text, "
+                + PROFILE_DATE + " text, "
+                + PROFILE_ACTIVE + " integer " +
+                " ) ";
         db.execSQL(CREATE_EARNINGS_TABLE);
+        db.execSQL(CREATE_PROFILE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("drop table if exists " + EARNINGS_TABLE);
+        db.execSQL("drop table if exists " + PROFILE_TABLE);
         onCreate(db);
     }
 
+    // ADD
     public void addEarnings(Earning earning) {
         SQLiteDatabase database = getWritableDatabase();
         String ADD_EARNINGS = "insert into " + EARNINGS_TABLE +
@@ -53,6 +73,18 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         database.close();
     }
 
+    public void addProfile(Profile profile) {
+        SQLiteDatabase database = getWritableDatabase();
+        String ADD_PROFILE = "insert into " + PROFILE_TABLE +
+                " values(null, '" +
+                profile.getName() + "', '" +
+                profile.getPassword() + "', '" +
+                profile.getEmail() + "') ";
+        database.execSQL(ADD_PROFILE);
+        database.close();
+    }
+
+    // FIND
     public List<Earning> findAllEarnings() {
         SQLiteDatabase database = getReadableDatabase();
         String FIND_ALL_EARNINGS = "select * from " + EARNINGS_TABLE;
@@ -70,5 +102,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.close();
         database.close();
         return earnings;
+    }
+
+    public List<Profile> findAllProfiles() {
+        SQLiteDatabase database = getReadableDatabase();
+        String FIND_ALL_PROFILES = "select * from " + PROFILE_TABLE;
+        Cursor cursor = database.rawQuery(FIND_ALL_PROFILES, null );
+        List<Profile> profiles = new ArrayList<>();
+
+        while (cursor.moveToNext()) {
+            Profile profile = new Profile(
+                    cursor.getLong(0),
+                    cursor.getString(1),
+                    cursor.getString(2),
+                    cursor.getString(3)
+            );
+            profiles.add(profile);
+        }
+
+        cursor.close();
+        database.close();
+        return profiles;
     }
 }
