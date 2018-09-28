@@ -6,12 +6,12 @@ public class Profile {
     private String password;
     private String email;
     private long date;
-    private int active;
+    private String active;
 
     public Profile() {
     }
 
-    public Profile(Long id, String name, String password, String email, long date, int active) {
+    public Profile(Long id, String name, String password, String email, long date, String active) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -60,11 +60,11 @@ public class Profile {
         this.date = date;
     }
 
-    public int getActive() {
+    public String getActive() {
         return active;
     }
 
-    public void setActive(int active) {
+    public void setActive(String active) {
         this.active = active;
     }
 }

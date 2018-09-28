@@ -48,7 +48,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + PROFILE_PASSWORD + " text, "
                 + PROFILE_EMAIL + " text, "
                 + PROFILE_DATE + " integer, "
-                + PROFILE_ACTIVE + " integer " +
+                + PROFILE_ACTIVE + " text " +
                 " ) ";
         db.execSQL(CREATE_EARNINGS_TABLE);
         db.execSQL(CREATE_PROFILE_TABLE);
@@ -118,7 +118,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                     cursor.getString(2),
                     cursor.getString(3),
                     cursor.getLong(4),
-                    cursor.getInt(5)
+                    cursor.getString(5)
             );
         }
 
@@ -128,11 +128,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     //UPDATE
-    public void updateProfileSetActive() {
+    public void updateProfileSetActive(String isActive) {
         SQLiteDatabase database = getWritableDatabase();
         String UPDATE_PROFILE_SET_ACTIVE = "update " + PROFILE_TABLE +
                 " set " +
-                PROFILE_ACTIVE + " = " + 1 +
+                PROFILE_ACTIVE + " = " + isActive +
                 " where " + ID + " = " + 0 ;
         database.execSQL(UPDATE_PROFILE_SET_ACTIVE);
         database.close();

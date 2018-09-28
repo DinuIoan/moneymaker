@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseData {
-    private static List<Earning> earnings = new ArrayList<>();
+    private static List<Earning> earnings;
     private static Profile profile;
 
     public static void initializeData(DatabaseHandler databaseHandler) {
