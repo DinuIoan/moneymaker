@@ -1,12 +1,14 @@
 package com.bestapps.moneymaker.earnmoney;
 
 import android.app.Activity;
+import android.content.Context;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.CheckedTextView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +23,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     public MyExpandableListAdapter(Activity act, SparseArray<Group> groups) {
         activity = act;
         this.groups = groups;
-        inflater = act.getLayoutInflater();
+        inflater = (LayoutInflater) act.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -91,8 +93,8 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
             convertView = inflater.inflate(R.layout.simple_list_view, null);
         }
         Group group = (Group) getGroup(groupPosition);
-        ((CheckedTextView) convertView).setText(group.string);
-        ((CheckedTextView) convertView).setChecked(isExpanded);
+        TextView listHeader = convertView.findViewById(R.id.lblListHeader);
+        listHeader.setText(group.string);
         return convertView;
     }
 
