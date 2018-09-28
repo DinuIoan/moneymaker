@@ -10,11 +10,11 @@ import java.util.List;
 
 public class DatabaseData {
     private static List<Earning> earnings = new ArrayList<>();
-    private static List<Profile> profiles = new ArrayList<>();
+    private static Profile profile;
 
     public static void initializeData(DatabaseHandler databaseHandler) {
         earnings = databaseHandler.findAllEarnings();
-        profiles = databaseHandler.findAllProfiles();
+        profile = databaseHandler.findProfile();
     }
 
     public static List<Earning> getEarnings() {
@@ -25,11 +25,11 @@ public class DatabaseData {
         DatabaseData.earnings = earnings;
     }
 
-    public static List<Profile> getProfiles() {
-        return profiles;
+    public static Profile getProfile() {
+        return profile;
     }
 
-    public static void setProfiles(List<Profile> profiles) {
-        DatabaseData.profiles = profiles;
+    public static void setProfile(Profile profile) {
+        DatabaseData.profile = profile;
     }
 }

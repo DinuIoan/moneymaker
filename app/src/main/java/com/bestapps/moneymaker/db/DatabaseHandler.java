@@ -47,7 +47,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + PROFILE_NAME + " text, "
                 + PROFILE_PASSWORD + " text, "
                 + PROFILE_EMAIL + " text, "
-                + PROFILE_DATE + " text, "
+                + PROFILE_DATE + " integer, "
                 + PROFILE_ACTIVE + " integer " +
                 " ) ";
         db.execSQL(CREATE_EARNINGS_TABLE);
@@ -76,10 +76,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     public void addProfile(Profile profile) {
         SQLiteDatabase database = getWritableDatabase();
         String ADD_PROFILE = "insert into " + PROFILE_TABLE +
-                " values(null, '" +
+                " values(0, '" +
                 profile.getName() + "', '" +
                 profile.getPassword() + "', '" +
-                profile.getEmail() + "') ";
+                profile.getEmail() +  "', '" +
+                profile.getDate() + "', '" +
+                profile.getActive() + "') ";
         database.execSQL(ADD_PROFILE);
         database.close();
     }
@@ -104,24 +106,35 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         return earnings;
     }
 
-    public List<Profile> findAllProfiles() {
+    public Profile findProfile() {
         SQLiteDatabase database = getReadableDatabase();
         String FIND_ALL_PROFILES = "select * from " + PROFILE_TABLE;
         Cursor cursor = database.rawQuery(FIND_ALL_PROFILES, null );
-        List<Profile> profiles = new ArrayList<>();
-
-        while (cursor.moveToNext()) {
-            Profile profile = new Profile(
+        Profile profile = new Profile();
+        if (cursor.moveToFirst()) {
+             profile = new Profile(
                     cursor.getLong(0),
                     cursor.getString(1),
                     cursor.getString(2),
-                    cursor.getString(3)
+                    cursor.getString(3),
+                    cursor.getLong(4),
+                    cursor.getInt(5)
             );
-            profiles.add(profile);
         }
 
         cursor.close();
         database.close();
-        return profiles;
+        return profile;
+    }
+
+    //UPDATE
+    public void updateProfileSetActive() {
+        SQLiteDatabase database = getWritableDatabase();
+        String UPDATE_PROFILE_SET_ACTIVE = "update " + PROFILE_TABLE +
+                " set " +
+                PROFILE_ACTIVE + " = " + 1 +
+                " where " + ID + " = " + 0 ;
+        database.execSQL(UPDATE_PROFILE_SET_ACTIVE);
+        database.close();
     }
 }

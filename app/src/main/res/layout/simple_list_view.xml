@@ -1,0 +1,13 @@
+<CheckedTextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/checked_text_view"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:layout_marginLeft="8dp"
+    android:gravity="left"
+    android:paddingLeft="32dp"
+    android:paddingTop="8dp"
+    android:text="Test"
+    android:textSize="14sp"
+    android:textStyle="bold"
+    android:background="@drawable/layer_card_background"/>

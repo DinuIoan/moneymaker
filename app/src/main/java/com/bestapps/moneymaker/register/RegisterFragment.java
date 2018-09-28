@@ -1,8 +1,9 @@
 package com.bestapps.moneymaker.register;
 
-import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.bestapps.moneymaker.R;
+import com.bestapps.moneymaker.db.DatabaseHandler;
+import com.bestapps.moneymaker.model.Profile;
 
 import static android.content.ContentValues.TAG;
 
@@ -20,6 +23,14 @@ public class RegisterFragment extends Fragment {
     private EditText nameText;
     private EditText passwordText;
     private EditText emailText;
+
+    private String name;
+    private String email;
+    private String password;
+    private long date;
+    private int active = 0;
+    private DatabaseHandler databaseHandler;
+    private FragmentManager fragmentManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +48,7 @@ public class RegisterFragment extends Fragment {
         nameText = view.findViewById(R.id.input_name);
         emailText = view.findViewById(R.id.input_email);
         passwordText = view.findViewById(R.id.input_password);
+        databaseHandler = new DatabaseHandler(getContext());
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +66,7 @@ public class RegisterFragment extends Fragment {
             onSignupFailed();
             return;
         }
-
+        databaseHandler.addProfile(new Profile(null, name, password, email, date, active));
         signUpButton.setEnabled(false);
 
     }
@@ -68,9 +80,10 @@ public class RegisterFragment extends Fragment {
     public boolean validate() {
         boolean valid = true;
 
-        String name = nameText.getText().toString();
-        String email = emailText.getText().toString();
-        String password = passwordText.getText().toString();
+        name = nameText.getText().toString();
+        email = emailText.getText().toString();
+        password = passwordText.getText().toString();
+        date =  System.currentTimeMillis();
 
         if (name.isEmpty() || name.length() < 3) {
             nameText.setError("at least 3 characters");
@@ -94,6 +107,14 @@ public class RegisterFragment extends Fragment {
         }
 
         return valid;
+    }
+
+    private void changeFragment() {
+        fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction =
+                fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fragment_placeholder, new RegisterFragment());
+        fragmentTransaction.commit();
     }
 
 }

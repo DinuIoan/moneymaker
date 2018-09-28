@@ -5,13 +5,13 @@ public class Profile {
     private String name;
     private String password;
     private String email;
-    private String date;
+    private long date;
     private int active;
 
     public Profile() {
     }
 
-    public Profile(Long id, String name, String password, String email, String date, int active) {
+    public Profile(Long id, String name, String password, String email, long date, int active) {
         this.id = id;
         this.name = name;
         this.password = password;
@@ -52,11 +52,11 @@ public class Profile {
         this.email = email;
     }
 
-    public String getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(long date) {
         this.date = date;
     }
 
