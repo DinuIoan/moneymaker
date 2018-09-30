@@ -9,13 +9,89 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <android.support.design.card.MaterialCardView
+            android:id="@+id/material_card_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/mtrl_card_spacing"
+            android:layout_marginTop="@dimen/mtrl_card_spacing"
+            android:layout_marginRight="@dimen/mtrl_card_spacing"
+            android:minHeight="50dp">
+            <TextView
+                android:id="@+id/today_title"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="Total earnings:\n 1568$"
+                android:textColor="@android:color/black"
+                android:textSize="23sp"
+                android:textStyle="bold"
+                android:layout_gravity="top"
+                android:gravity="center"/>
+        </android.support.design.card.MaterialCardView>
+
         <TextView
+            android:id="@+id/category_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/material_card_view"
+            android:layout_marginTop="10dp"
+            android:text="Category"
+            android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:textSize="25sp"
-            android:text="@string/home_fragment_title" />
+            android:padding="10dp"
+            android:textSize="20sp"
+            android:background="@drawable/category_text_view"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/home_recycler_view"
+            android:layout_below="@+id/category_text_view"
+            android:layout_marginTop="10dp"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
 
     </RelativeLayout>
+
+
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+        <!--<TextView-->
+            <!--android:id="@+id/home_text_view"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Home"-->
+            <!--android:textSize="50sp"-->
+            <!--android:textColor="@android:color/black"-->
+            <!--android:textStyle="bold"-->
+            <!--android:layout_centerHorizontal="true"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/total_earnings_text_view"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginTop="50dp"-->
+            <!--android:text="Total earnings:"-->
+            <!--android:textSize="25sp"-->
+            <!--android:layout_below="@+id/home_text_view"-->
+            <!--android:layout_centerHorizontal="true"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/total_earnings"-->
+            <!--android:layout_width="150dp"-->
+            <!--android:layout_height="150dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:layout_below="@+id/total_earnings_text_view"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:translationZ="15dp"-->
+            <!--android:background="@drawable/total_earnings_style"-->
+            <!--android:textSize="35sp"-->
+            <!--android:textColor="#76FF03"-->
+            <!--android:gravity="center"-->
+            <!--android:text="+1500$">-->
+        <!--</TextView>-->
+    <!--</RelativeLayout>-->
 
 </FrameLayout>

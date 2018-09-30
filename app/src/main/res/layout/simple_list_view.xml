@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <android.support.design.card.MaterialCardView
+    android:id="@+id/material_card_view"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="8dp"
-    android:background="@drawable/layer_card_background">
+    android:layout_marginLeft="@dimen/mtrl_card_spacing"
+    android:layout_marginTop="@dimen/mtrl_card_spacing"
+    android:layout_marginRight="@dimen/mtrl_card_spacing"
+    android:minHeight="50dp">
 
 
-    <TextView
-        android:id="@+id/lblListHeader"
-        android:layout_width="fill_parent"
-        android:layout_height="50dp"
-        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-        android:gravity="center_vertical"
-        android:textSize="25sp"/>
+        <TextView
+            android:id="@+id/lblListHeader"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
+            android:gravity="center_vertical"
+            android:textSize="25sp"/>
 
-</LinearLayout>
+    </android.support.design.card.MaterialCardView>
+</RelativeLayout>
