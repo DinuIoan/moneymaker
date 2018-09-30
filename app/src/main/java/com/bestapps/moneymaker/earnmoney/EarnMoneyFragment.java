@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bestapps.moneymaker.R;
 import com.bestapps.moneymaker.db.DatabaseData;
 import com.bestapps.moneymaker.home.HomeFragment;
+import com.bestapps.moneymaker.model.Label;
 import com.bestapps.moneymaker.model.Profile;
 import com.bestapps.moneymaker.register.RegisterFragment;
 
@@ -113,14 +114,9 @@ public class EarnMoneyFragment extends Fragment {
     }
 
     private void populateArrayList() {
-        chaptersArrayList.add("Photography");
-        chaptersArrayList.add("Social media");
-        chaptersArrayList.add("Websites");
-        chaptersArrayList.add("Survey");
-        chaptersArrayList.add("Apps");
-        chaptersArrayList.add("Blog");
-        chaptersArrayList.add("Email marketing");
-        chaptersArrayList.add("Develop");
+        for (String label: DatabaseData.getLabels()) {
+            chaptersArrayList.add(label);
+        }
     }
 
     private void handleOnBackPressed(View view) {

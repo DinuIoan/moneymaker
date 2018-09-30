@@ -1,6 +1,7 @@
 package com.bestapps.moneymaker.earnings;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
@@ -9,17 +10,22 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bestapps.moneymaker.R;
+import com.bestapps.moneymaker.db.DatabaseData;
 import com.bestapps.moneymaker.db.DatabaseHandler;
 import com.bestapps.moneymaker.model.Earning;
 
@@ -29,9 +35,11 @@ import java.util.Date;
 
 public class AddEarningFragment extends Fragment {
     private Button addButton;
-    private EditText descriptionTextView;
     private EditText amountTextView;
     private FragmentManager fragmentManager;
+    private Spinner labelSpinner;
+
+    private String label;
 
     public AddEarningFragment() {
     }
@@ -48,8 +56,11 @@ public class AddEarningFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_add_earning, container, false);
         addButton = view.findViewById(R.id.add_button);
-        descriptionTextView = view.findViewById(R.id.description_edit_text);
         amountTextView = view.findViewById(R.id.amount_edit_text);
+        amountTextView.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+
+        labelSpinner = (Spinner) view.findViewById(R.id.label_spinner);
+        setUpSpinner();
 
         view.findViewById(R.id.scroll_view_add_earnings)
                 .setOnTouchListener(new View.OnTouchListener() {
@@ -78,14 +89,31 @@ public class AddEarningFragment extends Fragment {
         return view;
     }
 
+    private void setUpSpinner() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_dropdown_item, DatabaseData.getLabels());
+        labelSpinner.setAdapter(adapter);
+        labelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                label = (String) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+    }
+
     private void addEarning() {
         if (!validate()) {
             onAddFailed();
             return;
         }
 
-        Earning earning = new Earning(0L, descriptionTextView.getText().toString(),
-                Long.parseLong(amountTextView.getText().toString()), parseDate());
+        Earning earning = new Earning(0L, label,
+                Double.parseDouble(amountTextView.getText().toString()), parseDate());
 
         DatabaseHandler databaseHandler = new DatabaseHandler(getActivity().getApplicationContext());
         databaseHandler.addEarnings(earning);
@@ -106,11 +134,8 @@ public class AddEarningFragment extends Fragment {
         } else {
             amountTextView.setError(null);
         }
-        if (descriptionTextView.getText().toString().isEmpty()) {
-            descriptionTextView.setError("enter description");
+        if (label.isEmpty()) {
             valid = false;
-        } else {
-            descriptionTextView.setError(null);
         }
 
         return valid;

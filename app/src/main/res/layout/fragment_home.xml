@@ -21,7 +21,6 @@
                 android:id="@+id/today_title"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
-                android:text="Total earnings:\n 1568$"
                 android:textColor="@android:color/black"
                 android:textSize="23sp"
                 android:textStyle="bold"
@@ -38,7 +37,10 @@
             android:text="Category"
             android:gravity="center"
             android:layout_centerHorizontal="true"
-            android:padding="10dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:paddingLeft="30dp"
+            android:paddingRight="30dp"
             android:textSize="20sp"
             android:background="@drawable/category_text_view"/>
 
@@ -52,46 +54,4 @@
             />
 
     </RelativeLayout>
-
-
-    <!--<RelativeLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent">-->
-        <!--<TextView-->
-            <!--android:id="@+id/home_text_view"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Home"-->
-            <!--android:textSize="50sp"-->
-            <!--android:textColor="@android:color/black"-->
-            <!--android:textStyle="bold"-->
-            <!--android:layout_centerHorizontal="true"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/total_earnings_text_view"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_marginTop="50dp"-->
-            <!--android:text="Total earnings:"-->
-            <!--android:textSize="25sp"-->
-            <!--android:layout_below="@+id/home_text_view"-->
-            <!--android:layout_centerHorizontal="true"/>-->
-
-        <!--<TextView-->
-            <!--android:id="@+id/total_earnings"-->
-            <!--android:layout_width="150dp"-->
-            <!--android:layout_height="150dp"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:layout_below="@+id/total_earnings_text_view"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:translationZ="15dp"-->
-            <!--android:background="@drawable/total_earnings_style"-->
-            <!--android:textSize="35sp"-->
-            <!--android:textColor="#76FF03"-->
-            <!--android:gravity="center"-->
-            <!--android:text="+1500$">-->
-        <!--</TextView>-->
-    <!--</RelativeLayout>-->
-
 </FrameLayout>

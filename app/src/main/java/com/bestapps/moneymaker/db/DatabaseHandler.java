@@ -17,7 +17,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String ID = "id";
 
     private static final String EARNINGS_TABLE = "earnings";
-    private static final String EARNINGS_DESCRIPTION = "description";
+    private static final String EARNINGS_LABEL = "label";
     private static final String EARNINGS_AMOUNT = "amount";
     private static final String EARNINGS_DATE = "date";
 
@@ -37,7 +37,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         String CREATE_EARNINGS_TABLE = "create table " + EARNINGS_TABLE+
                 " ( "
                 + ID + " integer primary key autoincrement, "
-                + EARNINGS_DESCRIPTION + " text, "
+                + EARNINGS_LABEL + " text, "
                 + EARNINGS_AMOUNT + "integer, "
                 + EARNINGS_DATE + "text " +
                 " )" ;
@@ -97,7 +97,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             Earning earning = new Earning(
                     cursor.getLong(0),
                     cursor.getString(1),
-                    cursor.getLong(2),
+                    cursor.getDouble(2),
                     cursor.getString(3));
             earnings.add(earning);
         }
@@ -125,6 +125,26 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         cursor.close();
         database.close();
         return profile;
+    }
+
+    public List<Earning> findEarningByLabel(String label) {
+        SQLiteDatabase database = getReadableDatabase();
+        String FIND_ALL_EARNINGS = "select * from " + EARNINGS_TABLE +
+                " where " + EARNINGS_LABEL + " = '" + label + "'";
+        Cursor cursor = database.rawQuery(FIND_ALL_EARNINGS, null);
+        List<Earning> earnings = new ArrayList<>();
+
+        while(cursor.moveToNext()) {
+            Earning earning = new Earning(
+                    cursor.getLong(0),
+                    cursor.getString(1),
+                    cursor.getDouble(2),
+                    cursor.getString(3));
+            earnings.add(earning);
+        }
+        cursor.close();
+        database.close();
+        return earnings;
     }
 
     //UPDATE

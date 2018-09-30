@@ -2,13 +2,13 @@ package com.bestapps.moneymaker.model;
 
 public class Earning {
     private Long id;
-    private String description;
-    private Long amount;
+    private String label;
+    private Double amount;
     private String date;
 
-    public Earning(Long id, String description, Long amount, String date) {
+    public Earning(Long id, String label, Double amount, String date) {
         this.id = id;
-        this.description = description;
+        this.label = label;
         this.amount = amount;
         this.date = date;
     }
@@ -22,18 +22,18 @@ public class Earning {
     }
 
     public String getDescription() {
-        return description;
+        return label;
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.label = description;
     }
 
-    public Long getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
-    public void setAmount(Long amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

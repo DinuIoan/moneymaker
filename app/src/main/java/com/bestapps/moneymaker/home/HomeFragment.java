@@ -10,9 +10,14 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.bestapps.moneymaker.R;
 import com.bestapps.moneymaker.db.DatabaseData;
+import com.bestapps.moneymaker.db.DatabaseHandler;
+import com.bestapps.moneymaker.model.Earning;
+import com.bestapps.moneymaker.model.Label;
+import com.bestapps.moneymaker.model.LabelEarnings;
 import com.bestapps.moneymaker.recyclerview.HomeRecyclerViewAdapter;
 import com.bestapps.moneymaker.recyclerview.TodayRecyclerViewAdapter;
 import com.bestapps.moneymaker.register.RegisterFragment;
@@ -26,7 +31,10 @@ public class HomeFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-    private List<String> chaptersArrayList;
+    private List<LabelEarnings> labelEarnings;
+    private TextView todayTitle;
+
+    private DatabaseHandler databaseHandler;
 
     public HomeFragment() {
     }
@@ -41,10 +49,14 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        handleOnBackPressed(view);
-        populateArrayList();
+        databaseHandler = new DatabaseHandler(getContext());
+
+        todayTitle = view.findViewById(R.id.today_title);
         mRecyclerView = view.findViewById(R.id.home_recycler_view);
 
+        handleOnBackPressed(view);
+        populateArrayList();
+        setUpTodayTitle();
         mRecyclerView.setHasFixedSize(true);
 
         // use a linear layout manager
@@ -52,9 +64,18 @@ public class HomeFragment extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         // specify an adapter (see also next example)
-        mAdapter = new HomeRecyclerViewAdapter(chaptersArrayList);
+        mAdapter = new HomeRecyclerViewAdapter(labelEarnings);
         mRecyclerView.setAdapter(mAdapter);
         return view;
+    }
+
+    private void setUpTodayTitle() {
+        List<Earning> earnings = DatabaseData.getEarnings();
+        double totalEarnings = 0;
+        for (Earning earning: earnings) {
+            totalEarnings += earning.getAmount();
+        }
+        todayTitle.setText("Total earnings: \n" + totalEarnings + "$");
     }
 
     private void handleOnBackPressed(View view) {
@@ -82,14 +103,19 @@ public class HomeFragment extends Fragment {
     }
 
     private void populateArrayList() {
-        chaptersArrayList = new ArrayList<>();
-        chaptersArrayList.add("Photography");
-        chaptersArrayList.add("Social media");
-        chaptersArrayList.add("Websites");
-        chaptersArrayList.add("Survey");
-        chaptersArrayList.add("Apps");
-        chaptersArrayList.add("Blog");
-        chaptersArrayList.add("Email marketing");
-        chaptersArrayList.add("Develop");
+        labelEarnings = new ArrayList<>();
+        int i = 0;
+        for (String label: DatabaseData.getLabels()) {
+            LabelEarnings labelEarning = new LabelEarnings();
+            labelEarnings.add(labelEarning);
+            List<Earning> earningsByLabel = databaseHandler.findEarningByLabel(label);
+            double totalEarning = 0;
+            for (Earning earning: earningsByLabel) {
+                totalEarning += earning.getAmount();
+            }
+            labelEarnings.get(i).setType(label);
+            labelEarnings.get(i).setTotalEarning("" + totalEarning + " $");
+            i++;
+        }
     }
 }

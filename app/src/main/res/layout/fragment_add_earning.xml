@@ -26,11 +26,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/description_edit_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textCapWords"
-                android:hint="Description" />
+            <Spinner
+                android:id="@+id/label_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Email Label -->
@@ -42,7 +41,6 @@
             <EditText android:id="@+id/amount_edit_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
                 android:hint="Amount" />
         </android.support.design.widget.TextInputLayout>
 
