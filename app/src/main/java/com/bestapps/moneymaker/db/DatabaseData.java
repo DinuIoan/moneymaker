@@ -50,5 +50,6 @@ public class DatabaseData {
         labels.add(Label.BlOG);
         labels.add(Label.EMAIL_MARKETING);
         labels.add(Label.DEVELOP);
+        labels.add(Label.CRYPTOCURRENCY);
     }
 }

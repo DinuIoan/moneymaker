@@ -3,6 +3,7 @@ package com.bestapps.moneymaker.recyclerview;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -22,11 +23,13 @@ public class HomeRecyclerViewAdapter
         // each data item is just a string in this case
         public TextView category;
         public TextView amount;
+        public ImageView icon;
 
         public MyViewHolder(LinearLayout v) {
             super(v);
             category = v.findViewById(R.id.category);
             amount = v.findViewById(R.id.amount);
+            icon = v.findViewById(R.id.icon);
         }
     }
 
@@ -54,6 +57,7 @@ public class HomeRecyclerViewAdapter
         // - replace the contents of the view with that element
         holder.category.setText(labelEarnings.get(position).getType());
         holder.amount.setText(labelEarnings.get(position).getTotalEarning());
+        holder.icon.setImageResource(labelEarnings.get(position).getIconId());
     }
 
     // Return the size of your dataset (invoked by the layout manager)

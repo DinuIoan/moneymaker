@@ -108,11 +108,14 @@ public class HomeFragment extends Fragment {
         for (String label: DatabaseData.getLabels()) {
             LabelEarnings labelEarning = new LabelEarnings();
             labelEarnings.add(labelEarning);
+
             List<Earning> earningsByLabel = databaseHandler.findEarningByLabel(label);
             double totalEarning = 0;
             for (Earning earning: earningsByLabel) {
                 totalEarning += earning.getAmount();
             }
+
+            labelEarnings.get(i).setIconId(Label.addIconId(label));
             labelEarnings.get(i).setType(label);
             labelEarnings.get(i).setTotalEarning("" + totalEarning + " $");
             i++;
