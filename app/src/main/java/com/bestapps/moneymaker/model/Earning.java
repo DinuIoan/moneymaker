@@ -21,12 +21,12 @@ public class Earning {
         this.id = id;
     }
 
-    public String getDescription() {
+    public String getLabel() {
         return label;
     }
 
-    public void setDescription(String description) {
-        this.label = description;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public Double getAmount() {

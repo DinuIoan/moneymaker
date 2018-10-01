@@ -11,6 +11,7 @@
     <string name="earn_money">Earn Money Now</string>
     <string name="today_earnings">Earnings for Today</string>
     <string name="monthly_earnings">Earnings for this Month</string>
+    <string name="profile">Profile</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="home_fragment_title">Welcome </string>

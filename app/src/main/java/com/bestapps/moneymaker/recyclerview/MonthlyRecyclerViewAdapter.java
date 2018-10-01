@@ -53,7 +53,7 @@ public class MonthlyRecyclerViewAdapter
     public void onBindViewHolder(TodayRecyclerViewAdapter.MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.description.setText(earningList.get(position).getDescription());
+        holder.description.setText(earningList.get(position).getLabel());
         holder.amount.setText("+ " + earningList.get(position).getAmount());
         holder.date.setText("" + earningList.get(position).getDate());
     }

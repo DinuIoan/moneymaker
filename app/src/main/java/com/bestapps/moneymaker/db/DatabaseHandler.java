@@ -66,7 +66,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase database = getWritableDatabase();
         String ADD_EARNINGS = "insert into " + EARNINGS_TABLE +
                 " values(null, '"
-                + earning.getDescription() + "', '"
+                + earning.getLabel() + "', '"
                 + earning.getAmount() + "', '"
                 + earning.getDate() + "')";
         database.execSQL(ADD_EARNINGS);

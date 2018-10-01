@@ -14,7 +14,7 @@ public class Label {
     public static final String CRYPTOCURRENCY = "Cryptocurrency";
 
 
-    public static int addIconId(String label) {
+    public static int getIconId(String label) {
         if (label.equals(Label.PHOTOGRAPHY)) {
             return R.drawable.photography;
         }

@@ -2,13 +2,14 @@ package com.bestapps.moneymaker.recyclerview;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bestapps.moneymaker.R;
 import com.bestapps.moneymaker.model.Earning;
+import com.bestapps.moneymaker.model.Label;
 
 import java.util.List;
 
@@ -23,12 +24,14 @@ public class TodayRecyclerViewAdapter
         public TextView description;
         public TextView amount;
         public TextView date;
+        public ImageView icon;
 
         public MyViewHolder(LinearLayout v) {
             super(v);
             description = v.findViewById(R.id.description);
             amount = v.findViewById(R.id.amount);
             date = v.findViewById(R.id.date);
+            icon = v.findViewById(R.id.icon);
         }
     }
 
@@ -54,9 +57,10 @@ public class TodayRecyclerViewAdapter
     public void onBindViewHolder(MyViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
-        holder.description.setText(earningList.get(position).getDescription());
+        holder.description.setText(earningList.get(position).getLabel());
         holder.amount.setText("+ " + earningList.get(position).getAmount());
         holder.date.setText("" + earningList.get(position).getDate());
+        holder.icon.setImageResource(Label.getIconId(earningList.get(position).getLabel()));
     }
 
     // Return the size of your dataset (invoked by the layout manager)

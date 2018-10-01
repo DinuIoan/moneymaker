@@ -19,8 +19,6 @@ import com.bestapps.moneymaker.model.Earning;
 import com.bestapps.moneymaker.model.Label;
 import com.bestapps.moneymaker.model.LabelEarnings;
 import com.bestapps.moneymaker.recyclerview.HomeRecyclerViewAdapter;
-import com.bestapps.moneymaker.recyclerview.TodayRecyclerViewAdapter;
-import com.bestapps.moneymaker.register.RegisterFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -115,7 +113,7 @@ public class HomeFragment extends Fragment {
                 totalEarning += earning.getAmount();
             }
 
-            labelEarnings.get(i).setIconId(Label.addIconId(label));
+            labelEarnings.get(i).setIconId(Label.getIconId(label));
             labelEarnings.get(i).setType(label);
             labelEarnings.get(i).setTotalEarning("" + totalEarning + " $");
             i++;

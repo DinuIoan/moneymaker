@@ -21,6 +21,7 @@ import com.bestapps.moneymaker.earnings.MonthEarningsFragment;
 import com.bestapps.moneymaker.earnings.TodayEarningsFragment;
 import com.bestapps.moneymaker.earnmoney.EarnMoneyFragment;
 import com.bestapps.moneymaker.home.HomeFragment;
+import com.bestapps.moneymaker.profile.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -100,6 +101,9 @@ public class MainActivity extends AppCompatActivity
         }
         if (id == R.id.nav_month_earnings) {
             changeFragment(new MonthEarningsFragment());
+        }
+        if (id == R.id.nav_profile) {
+            changeFragment(new ProfileFragment());
         }
         if (id == R.id.nav_exit) {
             quitApp();
