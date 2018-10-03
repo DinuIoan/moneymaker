@@ -12,8 +12,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.bestapps.moneymaker.R;
+import com.bestapps.moneymaker.db.DatabaseData;
+import com.bestapps.moneymaker.db.DatabaseHandler;
+import com.bestapps.moneymaker.model.Earning;
 import com.bestapps.moneymaker.model.Label;
 
 import java.text.SimpleDateFormat;
@@ -57,6 +61,7 @@ public class AddEarningFragment extends Fragment {
     private boolean isBlog = false;
     private String label = "";
     private String amount = "";
+    private DatabaseHandler databaseHandler;
 
     public AddEarningFragment() {
     }
@@ -72,6 +77,7 @@ public class AddEarningFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_add_earning, container, false);
+        databaseHandler = new DatabaseHandler(getContext());
         initiateViews(view);
         setCLickListeners();
         setDefaultCheckBox();
@@ -80,6 +86,7 @@ public class AddEarningFragment extends Fragment {
 
     private void setDefaultCheckBox() {
         photographyCheckBox.setChecked(true);
+        label = Label.PHOTOGRAPHY;
     }
 
     private void initiateViews(View view) {
@@ -105,7 +112,7 @@ public class AddEarningFragment extends Fragment {
         socialMediaCheckBox= view.findViewById(R.id.social_media_checkbox);
         surveyCheckBox= view.findViewById(R.id.survey_checkbox);
         websitesCheckBox= view.findViewById(R.id.websites_checkbox);
-
+        addButton = view.findViewById(R.id.add_button);
     }
 
     private void changeFragment() {
@@ -270,6 +277,29 @@ public class AddEarningFragment extends Fragment {
                 checkBoxSelect(websitesCheckBox);
             }
         });
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (validate()) {
+                    Earning earning = new Earning(0L, label,
+                            Double.parseDouble(amountTextView.getText().toString()), parseDate());
+                    databaseHandler.addEarnings(earning);
+                    DatabaseData.setEarnings(databaseHandler.findAllEarnings());
+                    changeFragment();
+                } else {
+                    Toast.makeText(getContext(), "Enter amount, please.", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private boolean validate() {
+        if (amountTextView.getText().toString().isEmpty())
+            return false;
+        Double doubleNumber = Double.parseDouble(amountTextView.getText().toString());
+        if (doubleNumber.isNaN())
+            return false;
+        return true;
     }
 
     public String deleteLastCharacter(String str) {

@@ -54,7 +54,7 @@ public class EarnMoneyFragment extends Fragment {
 
         Profile profile = DatabaseData.getProfile();
 
-        if (profile == null) {
+        if (profile.getStatus() == null) {
             textView.setVisibility(View.VISIBLE);
 
             registerButton.setOnClickListener(new View.OnClickListener() {
