@@ -6,18 +6,22 @@ public class Profile {
     private String password;
     private String email;
     private long date;
-    private String active;
+    private String status;
+    private String location;
+    private String gender;
 
     public Profile() {
     }
 
-    public Profile(Long id, String name, String password, String email, long date, String active) {
+    public Profile(Long id, String name, String password, String email, long date, String status, String location, String gender) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.email = email;
         this.date = date;
-        this.active = active;
+        this.status = status;
+        this.location = location;
+        this.gender = gender;
     }
 
     public Long getId() {
@@ -60,11 +64,27 @@ public class Profile {
         this.date = date;
     }
 
-    public String getActive() {
-        return active;
+    public String getStatus() {
+        return status;
     }
 
-    public void setActive(String active) {
-        this.active = active;
+    public void setStatus(String active) {
+        this.status = status;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 }

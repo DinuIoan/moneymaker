@@ -12,16 +12,21 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bestapps.moneymaker.R;
 import com.bestapps.moneymaker.db.DatabaseData;
 import com.bestapps.moneymaker.db.DatabaseHandler;
 import com.bestapps.moneymaker.earnmoney.EarnMoneyFragment;
-import com.bestapps.moneymaker.home.HomeFragment;
 import com.bestapps.moneymaker.model.Profile;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static android.content.ContentValues.TAG;
 import static android.content.Context.INPUT_METHOD_SERVICE;
@@ -31,12 +36,16 @@ public class RegisterFragment extends Fragment {
     private EditText nameText;
     private EditText passwordText;
     private EditText emailText;
+    private EditText locationText;
+    private Spinner genderSpinner;
 
     private String name;
     private String email;
     private String password;
     private long date;
-    private String active = "ACTIVATING";
+    private String status = "ACTIVATING";
+    private String location;
+    private String gender;
     private DatabaseHandler databaseHandler;
     private FragmentManager fragmentManager;
 
@@ -56,6 +65,9 @@ public class RegisterFragment extends Fragment {
         nameText = view.findViewById(R.id.input_name);
         emailText = view.findViewById(R.id.input_email);
         passwordText = view.findViewById(R.id.input_password);
+        locationText = view.findViewById(R.id.input_location);
+        genderSpinner = view.findViewById(R.id.input_gender_spinner);
+        setUpSpinner();
         databaseHandler = new DatabaseHandler(getContext());
 
         view.findViewById(R.id.scroll_view_register)
@@ -64,14 +76,10 @@ public class RegisterFragment extends Fragment {
                     public boolean onTouch(View view, MotionEvent motionEvent) {
                         InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
                                 Activity.INPUT_METHOD_SERVICE);
-                        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
+                        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
                         return false;
                     }
                 });
-
-        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
-                Activity.INPUT_METHOD_SERVICE);
-        imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,7 +104,7 @@ public class RegisterFragment extends Fragment {
             onSignupFailed();
             return;
         }
-        databaseHandler.addProfile(new Profile(null, name, password, email, date, active));
+        databaseHandler.addProfile(new Profile(null, name, password, email, date, status, location, gender));
         DatabaseData.setProfile(databaseHandler.findProfile());
         signUpButton.setEnabled(false);
         changeFragment();
@@ -116,6 +124,7 @@ public class RegisterFragment extends Fragment {
         email = emailText.getText().toString();
         password = passwordText.getText().toString();
         date =  System.currentTimeMillis();
+        location = locationText.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
             nameText.setError("at least 3 characters");
@@ -136,6 +145,13 @@ public class RegisterFragment extends Fragment {
             valid = false;
         } else {
             passwordText.setError(null);
+        }
+
+        if (location.isEmpty() || location.length() < 2) {
+            locationText.setError("at least 2 characters");
+            valid = false;
+        } else {
+            locationText.setError(null);
         }
 
         return valid;
@@ -172,5 +188,26 @@ public class RegisterFragment extends Fragment {
                 fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_placeholder, new EarnMoneyFragment());
         fragmentTransaction.commit();
+    }
+
+    private void setUpSpinner() {
+        List<String> genders = new ArrayList<>();
+        genders.add("Male");
+        genders.add("Female");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                android.R.layout.simple_spinner_dropdown_item, genders);
+        genderSpinner.setAdapter(adapter);
+        genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                gender = (String) parent.getItemAtPosition(position);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
     }
 }

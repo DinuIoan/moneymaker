@@ -7,4 +7,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="row_padding_vertical">10dp</dimen>
     <dimen name="mtrl_card_spacing">2dp</dimen>
+    <dimen name="numbers">60dp</dimen>
 </resources>

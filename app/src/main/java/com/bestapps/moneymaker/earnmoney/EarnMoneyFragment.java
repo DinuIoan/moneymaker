@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.bestapps.moneymaker.R;
 import com.bestapps.moneymaker.db.DatabaseData;
 import com.bestapps.moneymaker.home.HomeFragment;
-import com.bestapps.moneymaker.model.Label;
 import com.bestapps.moneymaker.model.Profile;
 import com.bestapps.moneymaker.register.RegisterFragment;
 
@@ -69,7 +68,7 @@ public class EarnMoneyFragment extends Fragment {
                 }
             });
         } else {
-            if (profile.getActive().equals("ACTIVATING")) {
+            if (profile.getStatus().equals("ACTIVATING")) {
                 textView.setText(message);
                 registerButton.setVisibility(View.INVISIBLE);
             } else {

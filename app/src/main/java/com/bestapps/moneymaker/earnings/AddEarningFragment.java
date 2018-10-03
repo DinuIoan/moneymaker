@@ -1,36 +1,22 @@
 package com.bestapps.moneymaker.earnings;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
-import android.text.InputType;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bestapps.moneymaker.R;
-import com.bestapps.moneymaker.db.DatabaseData;
-import com.bestapps.moneymaker.db.DatabaseHandler;
-import com.bestapps.moneymaker.model.Earning;
+import com.bestapps.moneymaker.model.Label;
 
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 
 public class AddEarningFragment extends Fragment {
@@ -38,8 +24,39 @@ public class AddEarningFragment extends Fragment {
     private EditText amountTextView;
     private FragmentManager fragmentManager;
     private Spinner labelSpinner;
+    private Button unu;
+    private Button doi;
+    private Button trei;
+    private Button patru;
+    private Button cinci;
+    private Button sase;
+    private Button sapte;
+    private Button opt;
+    private Button noua;
+    private Button zero;
+    private Button punct;
+    private Button delete;
+    private CheckBox photographyCheckBox;
+    private CheckBox appsCheckBox;
+    private CheckBox developCheckBox;
+    private CheckBox emailCheckBox;
+    private CheckBox cryptoCheckBox;
+    private CheckBox socialMediaCheckBox;
+    private CheckBox blogCheckBox;
+    private CheckBox surveyCheckBox;
+    private CheckBox websitesCheckBox;
 
-    private String label;
+    private boolean isPhotography = false;
+    private boolean isSocialMedia = false;
+    private boolean isWebsites = false;
+    private boolean isApps = false;
+    private boolean isDevelop = false;
+    private boolean isSurvey = false;
+    private boolean isEmail = false;
+    private boolean isCrypto = false;
+    private boolean isBlog = false;
+    private String label = "";
+    private String amount = "";
 
     public AddEarningFragment() {
     }
@@ -55,90 +72,40 @@ public class AddEarningFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_add_earning, container, false);
-        addButton = view.findViewById(R.id.add_button);
-        amountTextView = view.findViewById(R.id.amount_edit_text);
-        amountTextView.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
-
-        labelSpinner = (Spinner) view.findViewById(R.id.label_spinner);
-        setUpSpinner();
-
-        view.findViewById(R.id.scroll_view_add_earnings)
-                .setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View view, MotionEvent motionEvent) {
-                        InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(
-                                Activity.INPUT_METHOD_SERVICE);
-                        imm.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(), 0);
-                        return false;
-                    }
-                });
-
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                InputMethodManager imm = (InputMethodManager)
-                        getActivity().getSystemService(Activity.INPUT_METHOD_SERVICE);
-                View view = getActivity().getCurrentFocus();
-                if (view == null) {
-                    view = new View(getActivity());
-                }
-                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                addEarning();
-            }
-        });
+        initiateViews(view);
+        setCLickListeners();
+        setDefaultCheckBox();
         return view;
     }
 
-    private void setUpSpinner() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                android.R.layout.simple_spinner_dropdown_item, DatabaseData.getLabels());
-        labelSpinner.setAdapter(adapter);
-        labelSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int position, long id) {
-                label = (String) parent.getItemAtPosition(position);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
+    private void setDefaultCheckBox() {
+        photographyCheckBox.setChecked(true);
     }
 
-    private void addEarning() {
-        if (!validate()) {
-            onAddFailed();
-            return;
-        }
+    private void initiateViews(View view) {
+        unu = view.findViewById(R.id.unu);
+        doi = view.findViewById(R.id.doi);
+        trei = view.findViewById(R.id.trei);
+        patru = view.findViewById(R.id.patru);
+        cinci = view.findViewById(R.id.cinci);
+        sase = view.findViewById(R.id.sase);
+        sapte = view.findViewById(R.id.sapte);
+        opt = view.findViewById(R.id.opt);
+        noua = view.findViewById(R.id.noua);
+        zero = view.findViewById(R.id.zero);
+        punct = view.findViewById(R.id.point);
+        delete = view.findViewById(R.id.delete);
+        amountTextView = view.findViewById(R.id.amount);
+        appsCheckBox = view.findViewById(R.id.apps_checkbox);
+        blogCheckBox= view.findViewById(R.id.blog_checkbox);
+        cryptoCheckBox= view.findViewById(R.id.crypto_checkbox);
+        developCheckBox= view.findViewById(R.id.develop_checkbox);
+        emailCheckBox= view.findViewById(R.id.email_checkbox);
+        photographyCheckBox= view.findViewById(R.id.photography_checkbox);
+        socialMediaCheckBox= view.findViewById(R.id.social_media_checkbox);
+        surveyCheckBox= view.findViewById(R.id.survey_checkbox);
+        websitesCheckBox= view.findViewById(R.id.websites_checkbox);
 
-        Earning earning = new Earning(0L, label,
-                Double.parseDouble(amountTextView.getText().toString()), parseDate());
-
-        DatabaseHandler databaseHandler = new DatabaseHandler(getActivity().getApplicationContext());
-        databaseHandler.addEarnings(earning);
-        changeFragment();
-    }
-
-    private void onAddFailed() {
-        Toast.makeText(getContext(), "Add failed", Toast.LENGTH_LONG).show();
-
-        addButton.setEnabled(true);
-    }
-
-    private boolean validate() {
-        boolean valid = true;
-        if (amountTextView.getText().toString().isEmpty()) {
-            amountTextView.setError("enter amount");
-            valid = false;
-        } else {
-            amountTextView.setError(null);
-        }
-        if (label.isEmpty()) {
-            valid = false;
-        }
-
-        return valid;
     }
 
     private void changeFragment() {
@@ -153,5 +120,192 @@ public class AddEarningFragment extends Fragment {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date();
         return format.format(date);
+    }
+
+    private void setCLickListeners() {
+        unu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amount += "1";
+                amountTextView.setText(amount);
+            }
+        });
+        doi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amount += "2";
+                amountTextView.setText(amount);
+            }
+        });
+        trei.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amount += "3";
+                amountTextView.setText(amount);
+            }
+        });
+        patru.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amount += "4";
+                amountTextView.setText(amount);
+            }
+        });
+        cinci.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amount += "5";
+                amountTextView.setText(amount);
+            }
+        });
+        sase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amount += "6";
+                amountTextView.setText(amount);
+            }
+        });
+        sapte.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amount += "7";
+                amountTextView.setText(amount);
+            }
+        });
+        opt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amount += "8";
+                amountTextView.setText(amount);
+            }
+        });
+        noua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amount += "9";
+                amountTextView.setText(amount);
+            }
+        });
+        zero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amount += "0";
+                amountTextView.setText(amount);
+            }
+        });
+        punct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amount += ".";
+                amountTextView.setText(amount);
+            }
+        });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                amount = deleteLastCharacter(amount);
+                amountTextView.setText(amount);
+            }
+        });
+        appsCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                label = Label.APPS;
+                checkBoxSelect(appsCheckBox);
+            }
+        });
+        blogCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                label = Label.BlOG;
+                checkBoxSelect(blogCheckBox);
+            }
+        });
+        cryptoCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                label = Label.CRYPTOCURRENCY;
+                checkBoxSelect(cryptoCheckBox);
+            }
+        });
+        developCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                label = Label.DEVELOP;
+                checkBoxSelect(developCheckBox);
+            }
+        });
+        emailCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                label = Label.EMAIL_MARKETING;
+                checkBoxSelect(emailCheckBox);
+            }
+        });
+        photographyCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                label = Label.PHOTOGRAPHY;
+                checkBoxSelect(photographyCheckBox);
+            }
+        });
+        socialMediaCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                label = Label.SOCIAL_MEDIA;
+                checkBoxSelect(socialMediaCheckBox);
+            }
+        });
+        surveyCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                label = Label.SURVEY;
+                checkBoxSelect(surveyCheckBox);
+            }
+        });
+        websitesCheckBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                label = Label.WEBSITES;
+                checkBoxSelect(websitesCheckBox);
+            }
+        });
+    }
+
+    public String deleteLastCharacter(String str) {
+        if (str != null && str.length() > 0) {
+            str = str.substring(0, str.length() - 1);
+        }
+        return str;
+    }
+
+    private void checkBoxSelect(CheckBox checkBox) {
+        if (!(checkBox.equals(websitesCheckBox)) && websitesCheckBox.isChecked()) {
+            websitesCheckBox.setChecked(false);
+        }
+        if (!(checkBox.equals(surveyCheckBox)) && surveyCheckBox.isChecked()) {
+            surveyCheckBox.setChecked(false);
+        }
+        if (!(checkBox.equals(socialMediaCheckBox)) && socialMediaCheckBox.isChecked()) {
+            socialMediaCheckBox.setChecked(false);
+        }
+        if (!(checkBox.equals(photographyCheckBox)) && photographyCheckBox.isChecked()) {
+            photographyCheckBox.setChecked(false);
+        }
+        if (!(checkBox.equals(emailCheckBox)) && emailCheckBox.isChecked()) {
+            emailCheckBox.setChecked(false);
+        }
+        if (!(checkBox.equals(developCheckBox)) && developCheckBox.isChecked()) {
+            developCheckBox.setChecked(false);
+        }
+        if (!(checkBox.equals(cryptoCheckBox)) && cryptoCheckBox.isChecked()) {
+            cryptoCheckBox.setChecked(false);
+        }
+        if (!(checkBox.equals(blogCheckBox)) && blogCheckBox.isChecked()) {
+            blogCheckBox.setChecked(false);
+        }
+        if (!(checkBox.equals(appsCheckBox)) && appsCheckBox.isChecked()) {
+            appsCheckBox.setChecked(false);
+        }
     }
 }

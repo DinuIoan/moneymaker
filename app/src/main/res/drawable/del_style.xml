@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/delete"/>
+    <item >
+        <shape android:shape="oval" >
+            <gradient android:type="radial" android:gradientRadius="100dp"
+                android:startColor="#263238" android:endColor="#263238"/>
+        </shape>
+    </item>
+</selector>
+

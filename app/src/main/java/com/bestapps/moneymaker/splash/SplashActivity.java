@@ -33,13 +33,15 @@ public class SplashActivity extends AppCompatActivity {
         databaseHandler = new DatabaseHandler(getApplicationContext());
         if (DatabaseData.getEarnings() == null) {
             DatabaseData.initializeData(databaseHandler);
-            int oneHourInMillis = 60*60*1000;
+            int oneHourInMillis = 60 * 60 * 1000;
             long lastTimePlayed = DatabaseData.getProfile().getDate();
-            long currentTime = System.currentTimeMillis();
-            int hoursPassed = (int)((currentTime - lastTimePlayed) / oneHourInMillis);
-            if (hoursPassed > 24) {
-                databaseHandler.updateProfileSetActive("ACTIVE");
-                DatabaseData.setProfile(databaseHandler.findProfile());
+            if (!(lastTimePlayed == 0)) {
+                long currentTime = System.currentTimeMillis();
+                int hoursPassed = (int) ((currentTime - lastTimePlayed) / oneHourInMillis);
+                if (hoursPassed > 24) {
+                    databaseHandler.updateProfileSetActive("ACTIVE");
+                    DatabaseData.setProfile(databaseHandler.findProfile());
+                }
             }
         }
     }

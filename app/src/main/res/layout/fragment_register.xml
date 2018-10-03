@@ -4,7 +4,8 @@
     android:id="@+id/scroll_view_register"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="#EEEEEE">
 
     <LinearLayout
         android:orientation="vertical"
@@ -57,6 +58,31 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:hint="Password"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Location Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="Country"/>
+        </android.support.design.widget.TextInputLayout>
+
+        <!-- Gender Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <Spinner
+                android:id="@+id/input_gender_spinner"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Signup Button -->
