@@ -15,7 +15,10 @@
             android:layout_height="150dp"
             android:orientation="horizontal"
             android:elevation="10dp"
-            android:layout_margin="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/home_title_style">
             <LinearLayout
                     android:orientation="vertical"
@@ -48,51 +51,51 @@
                 android:layout_gravity="center" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/category_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/today_title"
-            android:layout_marginTop="10dp"
-            android:text="Category"
-            android:gravity="center"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:paddingLeft="30dp"
-            android:paddingRight="30dp"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:textColor="#FFDE03"
-            android:background="@drawable/category_text_view"
-            android:elevation="8dp"
-            android:layout_marginLeft="10dp"/>
+        <!--<TextView-->
+            <!--android:id="@+id/category_text_view"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/today_title"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:text="Category"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:paddingBottom="5dp"-->
+            <!--android:paddingLeft="30dp"-->
+            <!--android:paddingRight="30dp"-->
+            <!--android:textSize="20sp"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textColor="#FFDE03"-->
+            <!--android:background="@drawable/category_text_view"-->
+            <!--android:elevation="8dp"-->
+            <!--android:layout_marginLeft="10dp"/>-->
 
-        <TextView
-            android:id="@+id/amount_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/today_title"
-            android:layout_above="@+id/home_recycler_view"
-            android:layout_alignParentRight="true"
-            android:layout_alignRight="@+id/category_text_view"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/category_text_view"
-            android:elevation="8dp"
-            android:gravity="center"
-            android:paddingLeft="30dp"
-            android:paddingTop="5dp"
-            android:paddingRight="30dp"
-            android:paddingBottom="5dp"
-            android:text="Amount"
-            android:textStyle="bold"
-            android:textColor="#FFDE03"
-            android:textSize="20sp" />
+        <!--<TextView-->
+            <!--android:id="@+id/amount_text_view"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_below="@+id/today_title"-->
+            <!--android:layout_above="@+id/home_recycler_view"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_alignRight="@+id/category_text_view"-->
+            <!--android:layout_marginStart="10dp"-->
+            <!--android:layout_marginEnd="10dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:background="@drawable/category_text_view"-->
+            <!--android:elevation="8dp"-->
+            <!--android:gravity="center"-->
+            <!--android:paddingLeft="30dp"-->
+            <!--android:paddingTop="5dp"-->
+            <!--android:paddingRight="30dp"-->
+            <!--android:paddingBottom="5dp"-->
+            <!--android:text="Amount"-->
+            <!--android:textStyle="bold"-->
+            <!--android:textColor="#FFDE03"-->
+            <!--android:textSize="20sp" />-->
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/home_recycler_view"
-            android:layout_below="@+id/category_text_view"
+            android:layout_below="@+id/today_title"
             android:layout_marginTop="20dp"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
