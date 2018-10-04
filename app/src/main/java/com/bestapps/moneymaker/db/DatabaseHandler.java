@@ -160,8 +160,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase database = getWritableDatabase();
         String UPDATE_PROFILE_SET_ACTIVE = "update " + PROFILE_TABLE +
                 " set " +
-                PROFILE_STATUS + " = " + isActive +
-                " where " + ID + " = " + 0 ;
+                PROFILE_STATUS + " = '" + isActive +
+                "' where " + ID + " = " + 0 ;
         database.execSQL(UPDATE_PROFILE_SET_ACTIVE);
         database.close();
     }

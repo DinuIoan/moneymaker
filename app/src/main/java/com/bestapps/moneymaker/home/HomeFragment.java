@@ -30,7 +30,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     private List<LabelEarnings> labelEarnings;
-    private TextView todayTitle;
+    private TextView totalEarningsTextView;
 
     private DatabaseHandler databaseHandler;
 
@@ -49,7 +49,7 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         databaseHandler = new DatabaseHandler(getContext());
 
-        todayTitle = view.findViewById(R.id.today_title);
+        totalEarningsTextView = view.findViewById(R.id.total_earnings);
         mRecyclerView = view.findViewById(R.id.home_recycler_view);
 
         handleOnBackPressed(view);
@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment {
         for (Earning earning: earnings) {
             totalEarnings += earning.getAmount();
         }
-        todayTitle.setText("Total earnings: \n" + totalEarnings + "$");
+        totalEarningsTextView.setText(totalEarnings + "$");
     }
 
     private void handleOnBackPressed(View view) {
