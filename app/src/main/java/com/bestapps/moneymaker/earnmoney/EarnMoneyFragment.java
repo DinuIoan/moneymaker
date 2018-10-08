@@ -21,10 +21,12 @@ import com.bestapps.moneymaker.model.Profile;
 import com.bestapps.moneymaker.register.RegisterFragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class EarnMoneyFragment extends Fragment {
     private static final String message = "Come back here in a couple of hours to get access.\n" +
-            " Usually activation takes up to 24h";
+            " Usually activation takes up to 24h \n\n\n\n\n";
     private Button registerButton;
     private TextView textView;
     private ExpandableListView listView;
@@ -69,7 +71,10 @@ public class EarnMoneyFragment extends Fragment {
             });
         } else {
             if (profile.getStatus().equals("ACTIVATING")) {
-                textView.setText(message);
+                List<String> inspirationalQuotes =
+                        DatabaseData.getInspirationalQuotes();
+                Collections.shuffle(inspirationalQuotes);
+                textView.setText(message + inspirationalQuotes.get(0));
                 registerButton.setVisibility(View.INVISIBLE);
             } else {
                 textView.setVisibility(View.INVISIBLE);
@@ -140,5 +145,6 @@ public class EarnMoneyFragment extends Fragment {
                 fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_placeholder, new HomeFragment());
         fragmentTransaction.commit();
+
     }
 }

@@ -61,6 +61,7 @@ public class RegisterFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_register, container, false);
+        handleOnBackPressed(view);
         signUpButton = view.findViewById(R.id.btn_signup);
         nameText = view.findViewById(R.id.input_name);
         emailText = view.findViewById(R.id.input_email);

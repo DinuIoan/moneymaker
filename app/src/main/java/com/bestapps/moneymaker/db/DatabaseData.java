@@ -13,6 +13,7 @@ public class DatabaseData {
     private static List<Earning> earnings;
     private static Profile profile;
     private static List<String> labels;
+    private static List<String> inspirationalQuotes = new ArrayList<>();
 
     public static void initializeData(DatabaseHandler databaseHandler) {
         earnings = databaseHandler.findAllEarnings();
@@ -38,6 +39,18 @@ public class DatabaseData {
 
     public static List<String> getLabels() {
         return labels;
+    }
+
+    public static void setLabels(List<String> labels) {
+        DatabaseData.labels = labels;
+    }
+
+    public static List<String> getInspirationalQuotes() {
+        return inspirationalQuotes;
+    }
+
+    public static void setInspirationalQuotes(List<String> inspirationalQuotes) {
+        DatabaseData.inspirationalQuotes = inspirationalQuotes;
     }
 
     private static void populateArrayList() {

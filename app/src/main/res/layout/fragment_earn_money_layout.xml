@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/earn_money_relative_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#EEEEEE">
 
     <TextView
         android:id="@+id/activate_profile_text_view"
@@ -12,15 +13,21 @@
         android:gravity="center"
         android:layout_centerInParent="true"
         android:layout_above="@+id/register_button"
+        android:textSize="16sp"
+        android:padding="10dp"
         android:text="You must activate your profile to see this content, please register..."/>
 
     <Button
         android:id="@+id/register_button"
         android:layout_width="200dp"
         android:layout_height="100dp"
+        android:layout_marginTop="20dp"
         android:layout_centerInParent="true"
         android:text="Register"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/buttons_style"
+        android:translationZ="10dp"/>
 
     <ExpandableListView
         android:id="@+id/listview"

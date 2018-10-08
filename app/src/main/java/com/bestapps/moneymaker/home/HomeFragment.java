@@ -1,6 +1,7 @@
 package com.bestapps.moneymaker.home;
 
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -48,6 +49,9 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         databaseHandler = new DatabaseHandler(getContext());
+        NavigationView navigationView = getActivity().findViewById(R.id.nav_view);
+
+        navigationView.setCheckedItem(R.id.nav_home);
 
         totalEarningsTextView = view.findViewById(R.id.total_earnings);
         mRecyclerView = view.findViewById(R.id.home_recycler_view);
