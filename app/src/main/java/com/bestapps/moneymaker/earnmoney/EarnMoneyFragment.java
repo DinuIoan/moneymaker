@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bestapps.moneymaker.R;
@@ -31,6 +32,16 @@ public class EarnMoneyFragment extends Fragment {
     private Button registerButton;
     private TextView textView;
     private ExpandableListView listView;
+    private LinearLayout photographyLinearLayout;
+    private LinearLayout socialMediaLinearLayout;
+    private LinearLayout websitesLinearLayout;
+    private LinearLayout surveyLinearLayout;
+    private LinearLayout appsLinearLayout;
+    private LinearLayout blogLinearLayout;
+    private LinearLayout emailLinearLayout;
+    private LinearLayout developLinearLayout;
+    private LinearLayout cryptocurrencyLinearLayout;
+    private LinearLayout masterLinearLayout;
 
     private FragmentManager fragmentManager;
     private ArrayList<String> chaptersArrayList = new ArrayList<>();
@@ -51,61 +62,86 @@ public class EarnMoneyFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_today_earnings, container, false);
-//        registerButton = view.findViewById(R.id.register_button);
-//        textView = view.findViewById(R.id.activate_profile_text_view);
-//        handleOnBackPressed(view);
-//
-//        Profile profile = DatabaseData.getProfile();
-//
-//        if (profile.getStatus() == null) {
-//            textView.setVisibility(View.VISIBLE);
-//
-//            registerButton.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View view) {
-//                    fragmentManager = getActivity().getSupportFragmentManager();
-//                    FragmentTransaction fragmentTransaction =
-//                            fragmentManager.beginTransaction();
-//                    fragmentTransaction.replace(R.id.fragment_placeholder, new RegisterFragment());
-//                    fragmentTransaction.commit();
-//                }
-//            });
-//        } else {
-//            if (profile.getStatus().equals("ACTIVATING")) {
-//                List<String> inspirationalQuotes =
-//                        DatabaseData.getInspirationalQuotes();
-//                Collections.shuffle(inspirationalQuotes);
-//                textView.setText(message + inspirationalQuotes.get(0));
-//                registerButton.setVisibility(View.INVISIBLE);
-//            } else {
-//                textView.setVisibility(View.INVISIBLE);
-//                registerButton.setVisibility(View.INVISIBLE);
-//                listView = view.findViewById(R.id.listview);
-//                populateArrayList();
-//                createData();
-//                MyExpandableListAdapter adapter = new MyExpandableListAdapter(getActivity(), groups);
-//                listView.setAdapter(adapter);
-//                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//
-//                    @Override
-//                    public void onItemClick(AdapterView<?> parent, final View view,
-//                                            int position, long id) {
-//                        final String item = (String) parent.getItemAtPosition(position);
-//                        view.animate().setDuration(2000).alpha(0)
-//                                .withEndAction(new Runnable() {
-//                                    @Override
-//                                    public void run() {
-//                                        chaptersArrayList.remove(item);
-//                                        adapter.notifyDataSetChanged();
-//                                        view.setAlpha(1);
-//                                    }
-//                                });
-//                    }
-//
-//                });
-//            }
-//        }
+        findViews(view);
+        handleOnBackPressed(view);
+
+        registerButton = view.findViewById(R.id.register_button);
+        textView = view.findViewById(R.id.activate_profile_text_view);
+
+        Profile profile = DatabaseData.getProfile();
+        masterLinearLayout.setVisibility(View.INVISIBLE);
+        if (profile.getStatus() == null) {
+            textView.setVisibility(View.VISIBLE);
+
+
+            registerButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction =
+                            fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_placeholder, new RegisterFragment());
+                    fragmentTransaction.commit();
+                }
+            });
+        } else {
+            if (profile.getStatus().equals("ACTIVATING")) {
+                List<String> inspirationalQuotes =
+                        DatabaseData.getInspirationalQuotes();
+                Collections.shuffle(inspirationalQuotes);
+                textView.setText(message + inspirationalQuotes.get(0));
+                registerButton.setVisibility(View.INVISIBLE);
+            } else {
+                textView.setVisibility(View.INVISIBLE);
+                registerButton.setVisibility(View.INVISIBLE);
+                masterLinearLayout.setVisibility(View.VISIBLE);
+            }
+        }
         return view;
+    }
+
+    private void findViews(View view) {
+        photographyLinearLayout = view.findViewById(R.id.photography);
+        socialMediaLinearLayout = view.findViewById(R.id.social_media);
+        websitesLinearLayout = view.findViewById(R.id.websites);
+        surveyLinearLayout = view.findViewById(R.id.survey);
+        appsLinearLayout = view.findViewById(R.id.apps);
+        blogLinearLayout = view.findViewById(R.id.blog);
+        emailLinearLayout = view.findViewById(R.id.email_marketing);
+        developLinearLayout = view.findViewById(R.id.develop);
+        cryptocurrencyLinearLayout = view.findViewById(R.id.cryptocurrency);
+        masterLinearLayout = view.findViewById(R.id.master_linear_layout);
+        setUpClickListeners();
+    }
+
+    private void setUpClickListeners() {
+        List<LinearLayout> linearLayoutList = buildLinearLayoutList();
+        for (LinearLayout linearLayout: linearLayoutList) {
+            linearLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction =
+                            fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragment_placeholder, new CategoryFragment());
+                    fragmentTransaction.commit();
+                }
+            });
+        }
+    }
+
+    private List<LinearLayout> buildLinearLayoutList() {
+        List<LinearLayout> linearLayoutList = new ArrayList<>();
+        linearLayoutList.add(appsLinearLayout);
+        linearLayoutList.add(blogLinearLayout);
+        linearLayoutList.add(cryptocurrencyLinearLayout);
+        linearLayoutList.add(developLinearLayout);
+        linearLayoutList.add(emailLinearLayout);
+        linearLayoutList.add(photographyLinearLayout);
+        linearLayoutList.add(socialMediaLinearLayout);
+        linearLayoutList.add(surveyLinearLayout);
+        linearLayoutList.add(websitesLinearLayout);
+        return linearLayoutList;
     }
 
     private void createData() {
