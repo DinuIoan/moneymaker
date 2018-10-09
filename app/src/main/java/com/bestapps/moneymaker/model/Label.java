@@ -9,7 +9,7 @@ public class Label {
     public static final String SURVEY = "Survey";
     public static final String APPS = "Apps";
     public static final String BlOG = "Blog";
-    public static final String EMAIL_MARKETING = "Email_marketing";
+    public static final String EMAIL_MARKETING = "Email marketing";
     public static final String DEVELOP = "Develop";
     public static final String CRYPTOCURRENCY = "Cryptocurrency";
 

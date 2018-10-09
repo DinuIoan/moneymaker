@@ -46,7 +46,7 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/money_emoji"
+                android:src="@drawable/stats"
                 android:layout_marginStart="75dp"
                 android:layout_gravity="center" />
         </LinearLayout>

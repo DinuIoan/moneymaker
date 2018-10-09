@@ -48,7 +48,7 @@ public class SplashActivity extends AppCompatActivity {
         if (!(lastTimePlayed == 0)) {
             long currentTime = System.currentTimeMillis();
             int hoursPassed = (int) ((currentTime - lastTimePlayed) / oneHourInMillis);
-            if (hoursPassed > 17) {
+            if (!(hoursPassed > 17)) {
                 databaseHandler.updateProfileSetActive("ACTIVE");
                 DatabaseData.setProfile(databaseHandler.findProfile());
             }

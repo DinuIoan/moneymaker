@@ -1,4 +1,4 @@
-package com.bestapps.moneymaker.earnmoney;
+package com.bestapps.moneymaker.model;
 
 import java.util.ArrayList;
 import java.util.List;

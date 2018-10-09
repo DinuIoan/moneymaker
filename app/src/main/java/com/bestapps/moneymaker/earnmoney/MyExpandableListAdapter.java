@@ -7,12 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.CheckedTextView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bestapps.moneymaker.R;
+import com.bestapps.moneymaker.model.Group;
 
 
 public class MyExpandableListAdapter extends BaseExpandableListAdapter {

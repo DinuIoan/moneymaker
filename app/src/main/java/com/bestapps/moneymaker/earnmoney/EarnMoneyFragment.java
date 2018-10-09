@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.bestapps.moneymaker.R;
 import com.bestapps.moneymaker.db.DatabaseData;
 import com.bestapps.moneymaker.home.HomeFragment;
+import com.bestapps.moneymaker.model.Group;
 import com.bestapps.moneymaker.model.Profile;
 import com.bestapps.moneymaker.register.RegisterFragment;
 
@@ -49,61 +50,61 @@ public class EarnMoneyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_earn_money_layout, container, false);
-        registerButton = view.findViewById(R.id.register_button);
-        textView = view.findViewById(R.id.activate_profile_text_view);
-        handleOnBackPressed(view);
-
-        Profile profile = DatabaseData.getProfile();
-
-        if (profile.getStatus() == null) {
-            textView.setVisibility(View.VISIBLE);
-
-            registerButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    fragmentManager = getActivity().getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction =
-                            fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_placeholder, new RegisterFragment());
-                    fragmentTransaction.commit();
-                }
-            });
-        } else {
-            if (profile.getStatus().equals("ACTIVATING")) {
-                List<String> inspirationalQuotes =
-                        DatabaseData.getInspirationalQuotes();
-                Collections.shuffle(inspirationalQuotes);
-                textView.setText(message + inspirationalQuotes.get(0));
-                registerButton.setVisibility(View.INVISIBLE);
-            } else {
-                textView.setVisibility(View.INVISIBLE);
-                registerButton.setVisibility(View.INVISIBLE);
-                listView = view.findViewById(R.id.listview);
-                populateArrayList();
-                createData();
-                MyExpandableListAdapter adapter = new MyExpandableListAdapter(getActivity(), groups);
-                listView.setAdapter(adapter);
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, final View view,
-                                            int position, long id) {
-                        final String item = (String) parent.getItemAtPosition(position);
-                        view.animate().setDuration(2000).alpha(0)
-                                .withEndAction(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        chaptersArrayList.remove(item);
-                                        adapter.notifyDataSetChanged();
-                                        view.setAlpha(1);
-                                    }
-                                });
-                    }
-
-                });
-            }
-        }
+        View view = inflater.inflate(R.layout.fragment_today_earnings, container, false);
+//        registerButton = view.findViewById(R.id.register_button);
+//        textView = view.findViewById(R.id.activate_profile_text_view);
+//        handleOnBackPressed(view);
+//
+//        Profile profile = DatabaseData.getProfile();
+//
+//        if (profile.getStatus() == null) {
+//            textView.setVisibility(View.VISIBLE);
+//
+//            registerButton.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    fragmentManager = getActivity().getSupportFragmentManager();
+//                    FragmentTransaction fragmentTransaction =
+//                            fragmentManager.beginTransaction();
+//                    fragmentTransaction.replace(R.id.fragment_placeholder, new RegisterFragment());
+//                    fragmentTransaction.commit();
+//                }
+//            });
+//        } else {
+//            if (profile.getStatus().equals("ACTIVATING")) {
+//                List<String> inspirationalQuotes =
+//                        DatabaseData.getInspirationalQuotes();
+//                Collections.shuffle(inspirationalQuotes);
+//                textView.setText(message + inspirationalQuotes.get(0));
+//                registerButton.setVisibility(View.INVISIBLE);
+//            } else {
+//                textView.setVisibility(View.INVISIBLE);
+//                registerButton.setVisibility(View.INVISIBLE);
+//                listView = view.findViewById(R.id.listview);
+//                populateArrayList();
+//                createData();
+//                MyExpandableListAdapter adapter = new MyExpandableListAdapter(getActivity(), groups);
+//                listView.setAdapter(adapter);
+//                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//                    @Override
+//                    public void onItemClick(AdapterView<?> parent, final View view,
+//                                            int position, long id) {
+//                        final String item = (String) parent.getItemAtPosition(position);
+//                        view.animate().setDuration(2000).alpha(0)
+//                                .withEndAction(new Runnable() {
+//                                    @Override
+//                                    public void run() {
+//                                        chaptersArrayList.remove(item);
+//                                        adapter.notifyDataSetChanged();
+//                                        view.setAlpha(1);
+//                                    }
+//                                });
+//                    }
+//
+//                });
+//            }
+//        }
         return view;
     }
 
