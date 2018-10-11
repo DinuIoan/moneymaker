@@ -19,6 +19,7 @@ import com.bestapps.moneymaker.R;
 import com.bestapps.moneymaker.db.DatabaseData;
 import com.bestapps.moneymaker.home.HomeFragment;
 import com.bestapps.moneymaker.model.Group;
+import com.bestapps.moneymaker.model.Label;
 import com.bestapps.moneymaker.model.Profile;
 import com.bestapps.moneymaker.register.RegisterFragment;
 
@@ -117,13 +118,19 @@ public class EarnMoneyFragment extends Fragment {
     private void setUpClickListeners() {
         List<LinearLayout> linearLayoutList = buildLinearLayoutList();
         for (LinearLayout linearLayout: linearLayoutList) {
+            String label = getLabelByLinearLayout(linearLayout);
+
             linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    CategoryFragment fragment = new CategoryFragment();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("label", label);
+                    fragment.setArguments(bundle);
                     fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction =
                             fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.fragment_placeholder, new CategoryFragment());
+                    fragmentTransaction.replace(R.id.fragment_placeholder, fragment);
                     fragmentTransaction.commit();
                 }
             });
@@ -182,6 +189,37 @@ public class EarnMoneyFragment extends Fragment {
                 fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fragment_placeholder, new HomeFragment());
         fragmentTransaction.commit();
+    }
 
+    private String getLabelByLinearLayout(LinearLayout linearLayout) {
+        String label = "";
+        if (linearLayout.equals(appsLinearLayout)) {
+            label = Label.APPS;
+        }
+        if (linearLayout.equals(blogLinearLayout)) {
+            label = Label.BlOG;
+        }
+        if (linearLayout.equals(cryptocurrencyLinearLayout)) {
+            label = Label.CRYPTOCURRENCY;
+        }
+        if (linearLayout.equals(developLinearLayout)) {
+            label = Label.DEVELOP;
+        }
+        if (linearLayout.equals(emailLinearLayout)) {
+            label = Label.EMAIL_MARKETING;
+        }
+        if (linearLayout.equals(photographyLinearLayout)) {
+            label = Label.PHOTOGRAPHY;
+        }
+        if (linearLayout.equals(socialMediaLinearLayout)) {
+            label = Label.SOCIAL_MEDIA;
+        }
+        if (linearLayout.equals(surveyLinearLayout)) {
+            label = Label.SURVEY;
+        }
+        if (linearLayout.equals(websitesLinearLayout)) {
+            label = Label.WEBSITES;
+        }
+        return label;
     }
 }
