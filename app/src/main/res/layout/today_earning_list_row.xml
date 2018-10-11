@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:layout_margin="2dp"
-    android:background="@drawable/layer_card_background"
+    android:layout_margin="5dp"
+    android:background="@drawable/today_earnings_list_row_style"
     android:clickable="true"
     android:focusable="true"
     android:orientation="horizontal"
@@ -52,6 +52,8 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="+ 100$"
+                android:textColor="@color/moneyColor"
+                android:textStyle="bold"
                 android:textSize="20sp" />
 
         </LinearLayout>

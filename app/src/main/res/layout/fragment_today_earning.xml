@@ -7,8 +7,7 @@
     tools:context=".earnings.TodayEarningsFragment"
     android:background="#EEEEEE">
 
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,33 +24,44 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <android.support.design.card.MaterialCardView
-                android:id="@+id/material_card_view"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/mtrl_card_spacing"
-                android:layout_marginTop="@dimen/mtrl_card_spacing"
-                android:layout_marginRight="@dimen/mtrl_card_spacing"
-                android:minHeight="50dp">
-                <TextView
-                    android:id="@+id/today_title"
+                <LinearLayout
+                    android:id="@+id/linear_layout_today_earnings"
                     android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:text="Today's earnings: 1568$"
-                    android:textColor="@android:color/black"
-                    android:textSize="23sp"
-                    android:textStyle="bold"
-                    android:layout_gravity="top"
-                    android:gravity="center"/>
-            </android.support.design.card.MaterialCardView>
+                    android:layout_height="100dp"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical"
+                    android:background="#FFFFFF"
+                    android:elevation="10dp">
+                    <TextView
+                        android:id="@+id/today_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="top"
+                        android:gravity="center"
+                        android:text="Today's earnings"
+                        android:textColor="@android:color/black"
+                        android:textSize="23sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/today_amount"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:layout_gravity="top"
+                        android:gravity="center"
+                        android:text="$ 45782"
+                        android:textColor="@color/moneyColor"
+                        android:textSize="23sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/today_recycler_view"
-                android:layout_below="@+id/material_card_view"
-                android:scrollbars="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                />
+                android:layout_below="@+id/linear_layout_today_earnings"
+                android:scrollbars="vertical" />
         </RelativeLayout>
     </android.support.design.widget.CoordinatorLayout>
 

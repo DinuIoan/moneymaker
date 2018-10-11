@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.bestapps.moneymaker.R;
 import com.bestapps.moneymaker.db.DatabaseData;
@@ -29,6 +30,7 @@ public class TodayEarningsFragment extends Fragment {
     private RecyclerView.LayoutManager mLayoutManager;
     private FloatingActionButton addEarningButton;
     private FragmentManager fragmentManager;
+    private TextView totalAmountTextView;
 
 
     public TodayEarningsFragment() {
@@ -48,6 +50,7 @@ public class TodayEarningsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_today_earning, container, false);
         addEarningButton = view.findViewById(R.id.fab);
+        totalAmountTextView = view.findViewById(R.id.today_amount);
         handleOnBackPressed(view);
         loadEarnings();
         if (DatabaseData.getEarnings() != null) {
@@ -62,6 +65,8 @@ public class TodayEarningsFragment extends Fragment {
             // specify an adapter (see also next example)
             mAdapter = new TodayRecyclerViewAdapter(DatabaseData.getEarnings());
             mRecyclerView.setAdapter(mAdapter);
+
+            setTotalAmount(DatabaseData.getEarnings());
         }
 
         addEarningButton.setOnClickListener(new View.OnClickListener() {
@@ -76,6 +81,14 @@ public class TodayEarningsFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void setTotalAmount(List<Earning> earnings) {
+        Double max = 0.0;
+        for (Earning earning: earnings) {
+            max += earning.getAmount();
+        }
+        totalAmountTextView.setText("$" + max);
     }
 
     private void loadEarnings() {

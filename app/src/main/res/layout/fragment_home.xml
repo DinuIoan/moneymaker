@@ -39,7 +39,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:textColor="#2E7D32"
+                        android:textColor="@color/moneyColor"
                         android:textSize="25sp"
                         />
                 </LinearLayout>

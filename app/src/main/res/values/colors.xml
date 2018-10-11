@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="mainColorYellow">#FFDE03</color>
     <color name="statusBarColor">#c7ad00</color>
+    <color name="moneyColor">#2E7D32</color>
 </resources>

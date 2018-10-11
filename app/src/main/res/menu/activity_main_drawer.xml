@@ -17,10 +17,6 @@
             android:icon="@drawable/baseline_redeem_black_18dp"
             android:title="@string/today_earnings" />
         <item
-            android:id="@+id/nav_month_earnings"
-            android:icon="@drawable/baseline_month_black_18dp"
-            android:title="@string/monthly_earnings" />
-        <item
             android:id="@+id/nav_profile"
             android:icon="@drawable/baseline_sentiment_very_satisfied_black_18dp"
             android:title="@string/profile" />
