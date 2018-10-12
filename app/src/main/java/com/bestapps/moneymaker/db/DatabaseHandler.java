@@ -165,4 +165,20 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         database.execSQL(UPDATE_PROFILE_SET_ACTIVE);
         database.close();
     }
+
+    public void updateProfile(Profile profile) {
+        SQLiteDatabase database = getWritableDatabase();
+        String UPDATE_PROFILE = "update " + PROFILE_TABLE +
+                " set "
+                + PROFILE_NAME + " = '" + profile.getName() + "', "
+                + PROFILE_PASSWORD + " = '" + profile.getPassword() + "', "
+                + PROFILE_EMAIL + " = '" + profile.getEmail() + "', "
+                + PROFILE_DATE + " = " + profile.getDate() + ", "
+                + PROFILE_STATUS + " = '" + profile.getStatus() + "', "
+                + PROFILE_LOCATION + " = '" + profile.getLocation() + "', "
+                + PROFILE_GENDER + " = '" + profile.getGender() +
+                "' where " + ID + " = " + 0 ;
+        database.execSQL(UPDATE_PROFILE);
+        database.close();
+    }
 }

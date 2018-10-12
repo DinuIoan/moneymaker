@@ -68,7 +68,7 @@ public class Profile {
         return status;
     }
 
-    public void setStatus(String active) {
+    public void setStatus(String status) {
         this.status = status;
     }
 

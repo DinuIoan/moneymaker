@@ -1,8 +1,8 @@
 package com.bestapps.moneymaker.model;
 
-public class LabelEarnings {
+public class LabelEarnings implements Comparable{
     private String type;
-    private String totalEarning;
+    private Double totalEarning;
     private int iconId;
 
     public String getType() {
@@ -13,11 +13,11 @@ public class LabelEarnings {
         this.type = type;
     }
 
-    public String getTotalEarning() {
+    public Double getTotalEarning() {
         return totalEarning;
     }
 
-    public void setTotalEarning(String totalEarning) {
+    public void setTotalEarning(Double totalEarning) {
         this.totalEarning = totalEarning;
     }
 
@@ -27,5 +27,10 @@ public class LabelEarnings {
 
     public void setIconId(int iconId) {
         this.iconId = iconId;
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getTotalEarning().compareTo(((LabelEarnings) o).getTotalEarning());
     }
 }

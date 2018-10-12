@@ -10,15 +10,6 @@
     <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_margin="@dimen/fab_margin"
-            app:srcCompat="@drawable/ic_add" />
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -69,8 +60,8 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
                             android:layout_weight="1"
-                            android:background="@drawable/buttons_style"
                             android:elevation="10dp"
+                            android:background="#FFFFFF"
                             android:orientation="vertical"
                             android:paddingBottom="10dp"
                             android:clickable="true">
@@ -82,7 +73,7 @@
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
                                 android:text="Photography"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -100,7 +91,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
                             android:layout_weight="1"
-                            android:background="@drawable/buttons_style"
+                            android:background="#FFFFFF"
                             android:elevation="10dp"
                             android:orientation="vertical"
                             android:paddingBottom="10dp"
@@ -113,7 +104,7 @@
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
                                 android:text="Social media"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -138,7 +129,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
                             android:layout_weight="1"
-                            android:background="@drawable/buttons_style"
+                            android:background="#FFFFFF"
                             android:elevation="10dp"
                             android:orientation="vertical"
                             android:paddingBottom="10dp"
@@ -151,7 +142,7 @@
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
                                 android:text="Websites"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -169,7 +160,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
                             android:layout_weight="1"
-                            android:background="@drawable/buttons_style"
+                            android:background="#FFFFFF"
                             android:elevation="10dp"
                             android:orientation="vertical"
                             android:paddingBottom="10dp"
@@ -182,7 +173,7 @@
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
                                 android:text="Survey"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -207,7 +198,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
                             android:layout_weight="1"
-                            android:background="@drawable/buttons_style"
+                            android:background="#FFFFFF"
                             android:clickable="true"
                             android:elevation="10dp"
                             android:orientation="vertical"
@@ -220,7 +211,7 @@
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
                                 android:text="Apps"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -238,7 +229,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
                             android:layout_weight="1"
-                            android:background="@drawable/buttons_style"
+                            android:background="#FFFFFF"
                             android:clickable="true"
                             android:elevation="10dp"
                             android:orientation="vertical"
@@ -251,7 +242,7 @@
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
                                 android:text="Blog"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -276,7 +267,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
                             android:layout_weight="1"
-                            android:background="@drawable/buttons_style"
+                            android:background="#FFFFFF"
                             android:elevation="10dp"
                             android:orientation="vertical"
                             android:paddingBottom="10dp"
@@ -290,7 +281,7 @@
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
                                 android:text="Email marketing"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -308,7 +299,7 @@
                             android:layout_height="wrap_content"
                             android:layout_margin="20dp"
                             android:layout_weight="1"
-                            android:background="@drawable/buttons_style"
+                            android:background="#FFFFFF"
                             android:elevation="10dp"
                             android:orientation="vertical"
                             android:paddingBottom="10dp"
@@ -321,7 +312,7 @@
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
                                 android:text="Develop"
-                                android:textColor="@android:color/white"
+                                android:textColor="@android:color/black"
                                 android:textSize="20sp"
                                 android:textStyle="bold" />
 
@@ -347,7 +338,7 @@
                         android:layout_marginEnd="100dp"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        android:background="@drawable/buttons_style"
+                        android:background="#FFFFFF"
                         android:elevation="10dp"
                         android:orientation="vertical"
                         android:paddingBottom="10dp"
@@ -360,7 +351,7 @@
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="5dp"
                             android:text="Cryptocurrency"
-                            android:textColor="@android:color/white"
+                            android:textColor="@android:color/black"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 

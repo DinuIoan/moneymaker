@@ -56,7 +56,7 @@ public class HomeRecyclerViewAdapter
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.category.setText(labelEarnings.get(position).getType());
-        holder.amount.setText(labelEarnings.get(position).getTotalEarning());
+        holder.amount.setText("$" + labelEarnings.get(position).getTotalEarning());
         holder.icon.setImageResource(labelEarnings.get(position).getIconId());
     }
 

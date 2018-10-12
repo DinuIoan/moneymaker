@@ -23,7 +23,9 @@ import com.bestapps.moneymaker.R;
 import com.bestapps.moneymaker.db.DatabaseData;
 import com.bestapps.moneymaker.db.DatabaseHandler;
 import com.bestapps.moneymaker.earnmoney.EarnMoneyFragment;
+import com.bestapps.moneymaker.model.Earning;
 import com.bestapps.moneymaker.model.Profile;
+import com.bestapps.moneymaker.profile.ProfileFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +48,10 @@ public class RegisterFragment extends Fragment {
     private String status = "ACTIVATING";
     private String location;
     private String gender;
+    boolean isEdit = false;
     private DatabaseHandler databaseHandler;
     private FragmentManager fragmentManager;
+    private Profile editProfile;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,6 +74,17 @@ public class RegisterFragment extends Fragment {
         genderSpinner = view.findViewById(R.id.input_gender_spinner);
         setUpSpinner();
         databaseHandler = new DatabaseHandler(getContext());
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            if (bundle.getString("edit", "").equals("true")) {
+                isEdit = true;
+            }
+        }
+        if (isEdit) {
+            signUpButton.setText("Update account");
+            editProfile = databaseHandler.findProfile();
+            setUpFieldsForEdit(editProfile);
+        }
 
         view.findViewById(R.id.scroll_view_register)
                 .setOnTouchListener(new View.OnTouchListener() {
@@ -98,18 +113,69 @@ public class RegisterFragment extends Fragment {
         return view;
     }
 
+    private void setUpFieldsForEdit(Profile editProfile) {
+        nameText.setText(editProfile.getName());
+        passwordText.setText(editProfile.getPassword());
+        if (editProfile.getGender().equals("Male")) {
+            genderSpinner.setSelection(0);
+        } else {
+            genderSpinner.setSelection(1);
+        }
+        emailText.setText(editProfile.getEmail());
+        locationText.setText(editProfile.getLocation());
+    }
+
     public void signup() {
         Log.d(TAG, "Signup");
+        name = nameText.getText().toString();
+        email = emailText.getText().toString();
+        password = passwordText.getText().toString();
+        date =  System.currentTimeMillis();
+        location = locationText.getText().toString();
 
-        if (!validate()) {
+        if (!isEdit && !validate()) {
             onSignupFailed();
             return;
         }
-        databaseHandler.addProfile(new Profile(null, name, password, email, date, status, location, gender));
-        DatabaseData.setProfile(databaseHandler.findProfile());
-        signUpButton.setEnabled(false);
+        if (isEdit) {
+            updateProfile();
+        } else {
+            databaseHandler.addProfile(new Profile(null, name, password, email, date, status, location, gender));
+            DatabaseData.setProfile(databaseHandler.findProfile());
+            signUpButton.setEnabled(false);
+        }
         changeFragment();
 
+    }
+
+    private void updateProfile() {
+        Profile updatedProfile = new Profile();
+        if (name.isEmpty()) {
+            updatedProfile.setName(editProfile.getName());
+        } else {
+            updatedProfile.setName(name);
+        }
+        if (email.isEmpty()) {
+            updatedProfile.setEmail(editProfile.getEmail());
+        } else {
+            updatedProfile.setEmail(email);
+        }
+        if (password.isEmpty()) {
+            updatedProfile.setPassword(editProfile.getPassword());
+        } else {
+            updatedProfile.setPassword(password);
+        }
+        if (location.isEmpty()) {
+            updatedProfile.setLocation(editProfile.getLocation());
+        } else {
+            updatedProfile.setLocation(location);
+        }
+        updatedProfile.setGender(gender);
+        updatedProfile.setStatus(editProfile.getStatus());
+        updatedProfile.setDate(editProfile.getDate());
+
+        databaseHandler.updateProfile(updatedProfile);
+        DatabaseData.setProfile(databaseHandler.findProfile());
     }
 
     public void onSignupFailed() {
@@ -120,12 +186,6 @@ public class RegisterFragment extends Fragment {
 
     public boolean validate() {
         boolean valid = true;
-
-        name = nameText.getText().toString();
-        email = emailText.getText().toString();
-        password = passwordText.getText().toString();
-        date =  System.currentTimeMillis();
-        location = locationText.getText().toString();
 
         if (name.isEmpty() || name.length() < 3) {
             nameText.setError("at least 3 characters");
@@ -162,8 +222,14 @@ public class RegisterFragment extends Fragment {
         fragmentManager = getActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction =
                 fragmentManager.beginTransaction();
+        Fragment fragment;
+        if (isEdit) {
+            fragment = new ProfileFragment();
+        } else {
+            fragment = new EarnMoneyFragment();
+        }
         fragmentTransaction.replace(R.id.fragment_placeholder,
-                new EarnMoneyFragment());
+                fragment);
         fragmentTransaction.commit();
     }
 
@@ -174,21 +240,12 @@ public class RegisterFragment extends Fragment {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
                 if( keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_UP) {
-                    onBackPressed();
+                    changeFragment();
                     return true;
                 }
                 return false;
             }
         });
-    }
-
-
-    public void onBackPressed() {
-        fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction =
-                fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_placeholder, new EarnMoneyFragment());
-        fragmentTransaction.commit();
     }
 
     private void setUpSpinner() {

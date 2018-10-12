@@ -72,6 +72,20 @@ public class ProfileFragment extends Fragment {
         } else {
             pleaseRegister.setVisibility(View.INVISIBLE);
             editButton.setImageResource(android.R.drawable.ic_menu_edit);
+            editButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    RegisterFragment registerFragment = new RegisterFragment();
+                    fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction =
+                            fragmentManager.beginTransaction();
+                    Bundle bundle = new Bundle();
+                    bundle.putString("edit", "true");
+                    registerFragment.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.fragment_placeholder, registerFragment);
+                    fragmentTransaction.commit();
+                }
+            });
 
             name.setText(profile.getName());
             location.setText(profile.getLocation());
