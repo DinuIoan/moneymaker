@@ -66,20 +66,21 @@
                             android:paddingBottom="10dp"
                             android:clickable="true">
 
-                        <TextView
+                            <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-condensed"
                                 android:text="Photography"
                                 android:textColor="@android:color/black"
-                                android:textSize="20sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:layout_width="75dp"
-                                android:layout_height="70dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
                                 android:src="@drawable/photography" />
 
@@ -103,14 +104,15 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-condensed"
                                 android:text="Social media"
                                 android:textColor="@android:color/black"
-                                android:textSize="20sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:layout_width="75dp"
-                                android:layout_height="70dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
                                 android:src="@drawable/social_media" />
 
@@ -141,14 +143,15 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-condensed"
                                 android:text="Websites"
                                 android:textColor="@android:color/black"
-                                android:textSize="20sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:layout_width="75dp"
-                                android:layout_height="70dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
                                 android:src="@drawable/websites" />
 
@@ -172,14 +175,15 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-condensed"
                                 android:text="Survey"
                                 android:textColor="@android:color/black"
-                                android:textSize="20sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:layout_width="75dp"
-                                android:layout_height="70dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
                                 android:src="@drawable/survey" />
 
@@ -210,14 +214,15 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-condensed"
                                 android:text="Apps"
                                 android:textColor="@android:color/black"
-                                android:textSize="20sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:layout_width="75dp"
-                                android:layout_height="70dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
                                 android:src="@drawable/apps" />
 
@@ -241,14 +246,15 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-condensed"
                                 android:text="Blog"
                                 android:textColor="@android:color/black"
-                                android:textSize="20sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:layout_width="75dp"
-                                android:layout_height="70dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
                                 android:src="@drawable/blog" />
 
@@ -280,14 +286,15 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-condensed"
                                 android:text="Email marketing"
                                 android:textColor="@android:color/black"
-                                android:textSize="20sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:layout_width="75dp"
-                                android:layout_height="70dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
                                 android:src="@drawable/email" />
 
@@ -311,14 +318,15 @@
                                 android:layout_gravity="center_horizontal"
                                 android:layout_marginTop="15dp"
                                 android:layout_marginBottom="5dp"
+                                android:fontFamily="sans-serif-condensed"
                                 android:text="Develop"
                                 android:textColor="@android:color/black"
-                                android:textSize="20sp"
+                                android:textSize="18sp"
                                 android:textStyle="bold" />
 
                             <ImageView
-                                android:layout_width="75dp"
-                                android:layout_height="70dp"
+                                android:layout_width="60dp"
+                                android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
                                 android:src="@drawable/develop" />
 
@@ -350,14 +358,15 @@
                             android:layout_gravity="center_horizontal"
                             android:layout_marginTop="15dp"
                             android:layout_marginBottom="5dp"
+                            android:fontFamily="sans-serif-condensed"
                             android:text="Cryptocurrency"
                             android:textColor="@android:color/black"
-                            android:textSize="20sp"
+                            android:textSize="17sp"
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:layout_width="75dp"
-                            android:layout_height="70dp"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:layout_gravity="center_horizontal"
                             android:src="@drawable/crypto" />
 
