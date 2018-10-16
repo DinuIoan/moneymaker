@@ -14,10 +14,13 @@
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
+            app:backgroundTint="@color/mainColorYellow"
+            app:elevation="10dp"
+            app:fabCustomSize="50dp"
             app:srcCompat="@drawable/ic_add" />
 
         <RelativeLayout
@@ -32,11 +35,13 @@
                     android:orientation="vertical"
                     android:background="#FFFFFF"
                     android:elevation="10dp">
+
                     <TextView
                         android:id="@+id/today_title"
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:layout_gravity="top"
+                        android:fontFamily="serif"
                         android:gravity="center"
                         android:text="Today's earnings"
                         android:textColor="@android:color/black"
