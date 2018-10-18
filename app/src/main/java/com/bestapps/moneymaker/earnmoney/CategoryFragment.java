@@ -13,8 +13,15 @@ import android.widget.TextClock;
 import android.widget.TextView;
 
 import com.bestapps.moneymaker.R;
+import com.bestapps.moneymaker.db.DatabaseData;
 import com.bestapps.moneymaker.home.HomeFragment;
 import com.bestapps.moneymaker.model.Label;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 public class CategoryFragment extends Fragment {
     private TextView descriptionTextView;
@@ -45,6 +52,7 @@ public class CategoryFragment extends Fragment {
         }
         setUpViews(label, view);
         handleOnBackPressed(view);
+        loadDescription(label, view);
 
         return view;
     }
@@ -128,4 +136,50 @@ public class CategoryFragment extends Fragment {
         }
     }
 
+    private void loadDescription(String label, View view) {
+        InputStream inputStream = getInputStream(label, view);
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+            String line;
+            String description = "";
+            while ((line = br.readLine()) != null) {
+                if (line.contains("newline")) {
+                    description += "\n";
+                } else if (!line.contains("/")) {
+                    description += line;
+                } else {
+                    descriptionTextView.setText(description);
+                }
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private InputStream getInputStream(String label, View view) {
+        switch (label) {
+            case Label.PHOTOGRAPHY:
+                return view.getResources().openRawResource(R.raw.photography);
+            case Label.SOCIAL_MEDIA:
+                return view.getResources().openRawResource(R.raw.social_media);
+            case Label.WEBSITES:
+                return view.getResources().openRawResource(R.raw.websites);
+            case Label.SURVEY:
+                return view.getResources().openRawResource(R.raw.survey);
+            case Label.APPS:
+                return view.getResources().openRawResource(R.raw.apps);
+            case Label.BlOG:
+                return view.getResources().openRawResource(R.raw.blog);
+            case Label.EMAIL_MARKETING:
+                return view.getResources().openRawResource(R.raw.email_marketing);
+            case Label.DEVELOP:
+                return view.getResources().openRawResource(R.raw.develop);
+            case Label.CRYPTOCURRENCY:
+                return view.getResources().openRawResource(R.raw.crypto);
+            default:
+                return view.getResources().openRawResource(R.raw.photography);
+        }
+    }
 }
